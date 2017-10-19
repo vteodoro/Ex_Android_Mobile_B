@@ -11,7 +11,6 @@ public class MainActivity extends AppCompatActivity{
     private EditText edMeses;
     private EditText edCapResultante;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,14 +22,12 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void calcular(View v) {
-
         double capital = Double.parseDouble(edCapital.getText().toString());
         double juros = Double.parseDouble(edJuros.getText().toString());
         double meses = Double.parseDouble(edMeses.getText().toString());
         double capResult;
 
         capResult = capital * juros / 100 * meses + capital;
-
 
         edCapResultante.setText(String.valueOf(capResult));
     }
@@ -39,6 +36,7 @@ public class MainActivity extends AppCompatActivity{
         edCapital.setText(null);
         edJuros.setText(null);
         edMeses.setText(null);
+        edCapResultante.setText(null);
         
     }
 }
