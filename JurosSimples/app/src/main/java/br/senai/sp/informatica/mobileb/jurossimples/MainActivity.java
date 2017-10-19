@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity{
     private EditText edCapital;
@@ -22,14 +23,19 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void calcular(View v) {
-        double capital = Double.parseDouble(edCapital.getText().toString());
-        double juros = Double.parseDouble(edJuros.getText().toString());
-        double meses = Double.parseDouble(edMeses.getText().toString());
-        double capResult;
+        try {
+            double capital = Double.parseDouble(edCapital.getText().toString());
+            double juros = Double.parseDouble(edJuros.getText().toString());
+            double meses = Double.parseDouble(edMeses.getText().toString());
+            double capResult;
 
-        capResult = capital * juros / 100 * meses + capital;
+            capResult = capital * juros / 100 * meses + capital;
 
-        edCapResultante.setText(String.valueOf(capResult));
+            edCapResultante.setText(String.valueOf(capResult));
+        }
+        catch(Exception e){
+            Toast.makeText(this, "Digite os valores", Toast.LENGTH_LONG).show();
+        }
     }
 
     public void limpar(View v){
