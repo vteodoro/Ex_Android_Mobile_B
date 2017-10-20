@@ -20,9 +20,6 @@ public class MainActivity extends AppCompatActivity{
 
     public void clear(View view){
         campo.setText(null);
-        if(!botao.findViewById(R.id.btnVirgula).isEnabled()) {
-            botao.findViewById(R.id.btnVirgula).setEnabled(false);
-        }
     }
 
     public void numeros(View view){
@@ -31,11 +28,9 @@ public class MainActivity extends AppCompatActivity{
 
         if(num.equals(",") && campo.getText().toString().isEmpty()){
             campo.setText(campo.getText() + "0" + num);
-            botao.findViewById(R.id.btnVirgula).setEnabled(false);
         }
         else if(num.equals(",")){
             campo.setText(campo.getText() + num);
-            botao.findViewById(R.id.btnVirgula).setEnabled(false);
         }
         else if(campo.getText().toString().startsWith("0") && !campo.getText().toString().startsWith("0,")){
             campo.setText(num);
