@@ -10,15 +10,15 @@
     android:weightSum="1">
 
    <EditText
-		android:id="@+id/edResultado"
-		android:layout_width="match_parent"
-		android:layout_height="wrap_content"
-		android:layout_marginTop="20dp"
-		android:ems="10"
-		android:enabled="false"
-		android:hint="0"
-		android:textAlignment="textEnd"
-		tools:ignore="HardcodedText" />
+	android:id="@+id/edResultado"
+	android:layout_width="match_parent"
+	android:layout_height="wrap_content"
+	android:layout_marginTop="20dp"
+	android:ems="10"
+	android:enabled="false"
+	android:hint="0"
+	android:textAlignment="textEnd"
+	tools:ignore="HardcodedText" />
 
 
     <LinearLayout
