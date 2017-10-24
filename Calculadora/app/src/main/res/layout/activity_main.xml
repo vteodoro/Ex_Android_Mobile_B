@@ -84,6 +84,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/op_div"
+			android:onClick="divisao"
             tools:ignore="ButtonStyle" />
 
     </LinearLayout>
@@ -122,6 +123,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/op_mult"
+			android:onClick="multiplicacao"
             tools:ignore="ButtonStyle" />
 
     </LinearLayout>
@@ -160,6 +162,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/op_subt"
+			android:onClick="subtracao"
             tools:ignore="ButtonStyle" />
 
     </LinearLayout>
@@ -190,6 +193,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/igual"
+			android:onClick="igual"
             tools:ignore="ButtonStyle" />
 
         <Button
@@ -197,6 +201,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/op_soma"
+			android:onClick="soma"
             tools:ignore="ButtonStyle" />
 
     </LinearLayout>

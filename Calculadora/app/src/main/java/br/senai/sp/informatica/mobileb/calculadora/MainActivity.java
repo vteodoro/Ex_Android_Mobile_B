@@ -17,7 +17,9 @@ public class MainActivity extends AppCompatActivity{
        setContentView(R.layout.activity_main);
        campo = (EditText) findViewById(R.id.edResultado);
    }
+   
    public void clear(View view){ campo.setText(null); }
+   
    public void numeros(View view){
        botao = (Button)view;
        String num = botao.getText().toString();
@@ -33,26 +35,42 @@ public class MainActivity extends AppCompatActivity{
        }
        else { campo.setText(campo.getText() + num); }
    }
-   public void operacoes(View view){
-	   String campoAuxiliar;
-	   op = (Button)view;
-	   String operacao = op.getText().toString();
-	   while(!operacao.equals("=")){
-			if(campo.getText().toString().isEmpty()){
-				Toast.makeText(this, "Digite um numero", LENGHT.SHORT).show();
-			}
-			else{
+   
+   // public void operacoes(View view){
+	   // String campoAuxiliar;
+	   // op = (Button)view;
+	   // String operacao = op.getText().toString();
+	   // while(!operacao.equals("=")){
+			// if(campo.getText().toString().isEmpty()){
+				// Toast.makeText(this, "Digite um numero", LENGHT.SHORT).show();
+			// }
+			// else{
 				Toast.makeText(this, "campo não está vazio", LENGHT.SHORT).show();
-				// campoAuxiliar = campo.getText();
-				// campo.setText(campo.getText() + " " + operacao);
-			}
+				// campoAuxiliar = campo.getText();				
+			// }
 		   
 		   
-	   }
+	   // }
 	   
-	   if(operacao.equals("=")){
-		   Toast.makeText(this, "Digitou = ", LENGHT.SHORT).show();
-	   }
+	   // if(operacao.equals("=")){ Toast.makeText(this, "Digitou = ", LENGHT.SHORT).show(); }
+	   
+   // }
+   
+   public void soma(View view){
+	   
 	   
    }
+   
+   public void subtracao(View view){}
+   
+   public void multiplicacao(View view){}
+   
+   public void divisao(View view){}
+   
+   public void igual(View view){}
+   
+   
+   
+   
+   
 }
