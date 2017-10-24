@@ -7,7 +7,7 @@
     <string name="op_porc">%</string>
     <string name="op_clear">C</string>
     <string name="op_sinal">+/-</string>
-    <string name="virgula">,</string>
+    <string name="ponto">.</string>
     <string name="igual">=</string>
     <string name="nove">9</string>
     <string name="oito">8</string>

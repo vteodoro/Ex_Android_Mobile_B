@@ -182,10 +182,10 @@
             tools:ignore="ButtonStyle" />
 
         <Button
-            android:id="@+id/btnVirgula"
+            android:id="@+id/btnPonto"
             android:layout_width="95dp"
             android:layout_height="wrap_content"
-            android:text="@string/virgula"
+            android:text="@string/ponto"
             android:onClick="numeros"
             tools:ignore="ButtonStyle" />
         <Button

@@ -16,9 +16,9 @@ public class MainActivity extends AppCompatActivity{
     private int x;
     @Override
    protected void onCreate(Bundle savedInstanceState) {
-       super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_main);
-       campo = (EditText) findViewById(R.id.edResultado);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        campo = (EditText) findViewById(R.id.edResultado);
    }
    
    public void clear(View view){ campo.setText(null); }
