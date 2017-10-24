@@ -35,30 +35,14 @@ public class MainActivity extends AppCompatActivity{
        }
        else { campo.setText(campo.getText() + num); }
    }
-   
-   // public void operacoes(View view){
-	   // String campoAuxiliar;
-	   // op = (Button)view;
-	   // String operacao = op.getText().toString();
-	   // while(!operacao.equals("=")){
-			// if(campo.getText().toString().isEmpty()){
-				// Toast.makeText(this, "Digite um numero", LENGHT.SHORT).show();
-			// }
-			// else{
-				Toast.makeText(this, "campo não está vazio", LENGHT.SHORT).show();
-				// campoAuxiliar = campo.getText();				
-			// }
-		   
-		   
-	   // }
-	   
-	   // if(operacao.equals("=")){ Toast.makeText(this, "Digitou = ", LENGHT.SHORT).show(); }
-	   
-   // }
-   
+     
    public void soma(View view){
+	   String auxiliar;
+	   double valor;
+	   auxiliar = campo.getText();
+	   valor = Double.parseDouble(auxiliar);
 	   
-	   
+
    }
    
    public void subtracao(View view){}
