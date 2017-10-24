@@ -10,7 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
 
     private EditText campo;
-    private Button botao;
+    private Button botao, op;
     @Override
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
@@ -33,5 +33,26 @@ public class MainActivity extends AppCompatActivity{
        }
        else { campo.setText(campo.getText() + num); }
    }
-   public void operacoes(View view){}
+   public void operacoes(View view){
+	   String campoAuxiliar;
+	   op = (Button)view;
+	   String operacao = op.getText().toString();
+	   while(!operacao.equals("=")){
+			if(campo.getText().toString().isEmpty()){
+				Toast.makeText(this, "Digite um numero", LENGHT.SHORT).show();
+			}
+			else{
+				Toast.makeText(this, "campo não está vazio", LENGHT.SHORT).show();
+				// campoAuxiliar = campo.getText();
+				// campo.setText(campo.getText() + " " + operacao);
+			}
+		   
+		   
+	   }
+	   
+	   if(operacao.equals("=")){
+		   Toast.makeText(this, "Digitou = ", LENGHT.SHORT).show();
+	   }
+	   
+   }
 }
