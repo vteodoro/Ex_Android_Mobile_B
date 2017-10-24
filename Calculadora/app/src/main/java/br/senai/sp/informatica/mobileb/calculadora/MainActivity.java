@@ -11,6 +11,9 @@ public class MainActivity extends AppCompatActivity{
 
     private EditText campo;
     private Button botao, op;
+    private String auxiliar;
+    private double valor;
+    private int x;
     @Override
    protected void onCreate(Bundle savedInstanceState) {
        super.onCreate(savedInstanceState);
@@ -34,27 +37,56 @@ public class MainActivity extends AppCompatActivity{
            campo.setText(num);
        }
        else { campo.setText(campo.getText() + num); }
+       auxiliar = campo.getText().toString();
    }
      
    public void soma(View view){
-	   String auxiliar;
-	   double valor;
-	   auxiliar = campo.getText();
 	   valor = Double.parseDouble(auxiliar);
-	   
-
+       clear(view);
+       x = 1;
    }
    
-   public void subtracao(View view){}
+   public void subtracao(View view){
+       valor = Double.parseDouble(auxiliar);
+       clear(view);
+       x = 2;
+   }
    
-   public void multiplicacao(View view){}
+   public void multiplicacao(View view){
+       valor = Double.parseDouble(auxiliar);
+       clear(view);
+       x = 3;
+   }
    
-   public void divisao(View view){}
+   public void divisao(View view){
+       valor = Double.parseDouble(auxiliar);
+       clear(view);
+       x = 4;
+   }
    
-   public void igual(View view){}
-   
-   
-   
-   
-   
+   public void igual(View view){
+       if(x == 1) {
+           valor += Double.parseDouble(auxiliar);
+           campo.setText(String.valueOf(valor));
+       }else if(x == 2){
+           valor -= Double.parseDouble(auxiliar);
+           campo.setText(String.valueOf(valor));
+       }else if(x == 3){
+           valor *= Double.parseDouble(auxiliar);
+           campo.setText(String.valueOf(valor));
+       }else if(x == 4){
+           if(valor != 0) {
+               valor /= Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+           }else{
+               Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
+               clear(view);
+           }
+       }
+   }
+
+
+
+
+
 }
