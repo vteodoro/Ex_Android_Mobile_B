@@ -27,14 +27,14 @@ public class MainActivity extends AppCompatActivity{
        botao = (Button)view;
        String num = botao.getText().toString();
 
-       if(num.equals(",") && campo.getText().toString().isEmpty()){
+       if(num.equals(".") && campo.getText().toString().isEmpty()){
            campo.setText(campo.getText() + "0" + num);
        }
-       else if(campo.getText().toString().contains(",") && num.equals(",")){
+       else if(campo.getText().toString().contains(".") && num.equals(".")){
            num = "";
            campo.setText(campo.getText() + num);
        }
-       else if(campo.getText().toString().startsWith("0") && !campo.getText().toString().startsWith("0,") && !num.equals(",")){
+       else if(campo.getText().toString().startsWith("0") && !campo.getText().toString().startsWith("0.") && !num.equals(".")){
            campo.setText(num);
        }
        else { campo.setText(campo.getText() + num); }
@@ -93,4 +93,5 @@ public class MainActivity extends AppCompatActivity{
            clear(view);
            }
        }
-   }
+
+}
