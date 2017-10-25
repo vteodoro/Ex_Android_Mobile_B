@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity{
    public void numeros(View view){
        botao = (Button)view;
        String num = botao.getText().toString();
+
        if(num.equals(",") && campo.getText().toString().isEmpty()){
            campo.setText(campo.getText() + "0" + num);
        }
@@ -63,6 +64,12 @@ public class MainActivity extends AppCompatActivity{
        clear(view);
        x = 4;
    }
+
+    public void porcento(View view){
+        valor = Double.parseDouble(auxiliar);
+        clear(view);
+        x = 5;
+    }
    
    public void igual(View view){
        if(x == 1) {
@@ -75,18 +82,15 @@ public class MainActivity extends AppCompatActivity{
            valor *= Double.parseDouble(auxiliar);
            campo.setText(String.valueOf(valor));
        }else if(x == 4){
-           if(valor != 0) {
-               valor /= Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
-           }else{
-               Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
-               clear(view);
+           valor /= Double.parseDouble(auxiliar);
+           campo.setText(String.valueOf(valor));
+       }else if(x == 5){
+           valor /= 100;
+           valor *= Double.parseDouble(auxiliar);
+           campo.setText(String.valueOf(valor));
+       }else{
+           Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
+           clear(view);
            }
        }
    }
-
-
-
-
-
-}
