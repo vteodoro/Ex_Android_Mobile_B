@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity{
        else { campo.setText(campo.getText() + num); }
        auxiliar = campo.getText().toString();
    }
-     
+
    public void soma(View view){
 	   valor = Double.parseDouble(auxiliar);
        clear(view);
