@@ -70,7 +70,13 @@ public class MainActivity extends AppCompatActivity{
         clear(view);
         x = 5;
     }
-   
+
+    public void sinal(View view){
+        valor = Double.parseDouble(auxiliar);
+        valor *= (-1);
+        campo.setText(String.valueOf(valor));
+    }
+
    public void igual(View view){
        if(x == 1) {
            valor += Double.parseDouble(auxiliar);
