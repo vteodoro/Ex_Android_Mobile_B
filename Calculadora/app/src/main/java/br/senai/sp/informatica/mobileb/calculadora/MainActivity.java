@@ -86,30 +86,22 @@ public class MainActivity extends AppCompatActivity{
        switch (x){
            case 1:
                valor += Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
                break;
            case 2:
                valor -= Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
                break;
            case 3:
                valor *= Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
                break;
            case 4:
                valor /= Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
                break;
            case 5:
                valor /= 100;
                valor *= Double.parseDouble(auxiliar);
-               campo.setText(String.valueOf(valor));
-               break;
-           default:
-               Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
-               clear(view);
                break;
        }
+       campo.setText(String.valueOf(valor));
    }
 
 }
