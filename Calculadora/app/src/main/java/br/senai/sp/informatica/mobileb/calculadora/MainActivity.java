@@ -1,6 +1,5 @@
 package br.senai.sp.informatica.mobileb.calculadora;
 
-import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 public class MainActivity extends AppCompatActivity{
 
     private EditText campo;
-    private Button botao, op;
+    private Button botao;
     private String auxiliar;
     private double valor = 0 ;
     private int x;
@@ -22,7 +21,9 @@ public class MainActivity extends AppCompatActivity{
         campo = (EditText) findViewById(R.id.edResultado);
    }
    
-   public void clear(View view){ campo.setText(null); }
+   public void clear(View view){
+       campo.setText(null);
+   }
    
    public void numeros(View view){
        botao = (Button)view;
@@ -72,33 +73,40 @@ public class MainActivity extends AppCompatActivity{
         x = 5;
     }
 
-   public void sinal(View view){
+/*   public void sinal(View view){
         valor = Double.parseDouble(auxiliar);
         valor *= (-1);
         campo.setText(String.valueOf(valor));
-    }
+    }*/
 
    public void igual(View view){
-       if(x == 1) {
-           valor += Double.parseDouble(auxiliar);
-           campo.setText(String.valueOf(valor));
-       }else if(x == 2){
-           valor -= Double.parseDouble(auxiliar);
-           campo.setText(String.valueOf(valor));
-       }else if(x == 3){
-           valor *= Double.parseDouble(auxiliar);
-           campo.setText(String.valueOf(valor));
-       }else if(x == 4){
-           valor /= Double.parseDouble(auxiliar);
-           campo.setText(String.valueOf(valor));
-       }else if(x == 5){
-           valor /= 100;
-           valor *= Double.parseDouble(auxiliar);
-           campo.setText(String.valueOf(valor));
-       }else{
-           Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
-           clear(view);
-           }
+       switch (x){
+           case 1:
+               valor += Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+               break;
+           case 2:
+               valor -= Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+               break;
+           case 3:
+               valor *= Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+               break;
+           case 4:
+               valor /= Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+               break;
+           case 5:
+               valor /= 100;
+               valor *= Double.parseDouble(auxiliar);
+               campo.setText(String.valueOf(valor));
+               break;
+           default:
+               Toast.makeText(this, "Impossível calcular", Toast.LENGTH_SHORT).show();
+               clear(view);
+               break;
        }
+   }
 
 }

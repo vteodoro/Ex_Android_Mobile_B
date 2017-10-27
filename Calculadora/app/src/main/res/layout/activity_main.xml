@@ -44,7 +44,7 @@
             android:layout_width="95dp"
             android:layout_height="wrap_content"
             android:text="@string/op_sinal"
-            android:onClick="sinal"
+            android:enabled="false"
             android:textSize="15dp"
             android:backgroundTint="@color/colorAccent"
             tools:ignore="ButtonStyle" />
