@@ -1,5 +1,6 @@
 package br.senai.sp.informatica.mobileb.calculadora;
 
+import android.renderscript.Double2;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +13,7 @@ public class MainActivity extends AppCompatActivity{
     private EditText campo;
     private Button botao, op;
     private String auxiliar;
-    private double valor;
+    private double valor = 0 ;
     private int x;
     @Override
    protected void onCreate(Bundle savedInstanceState) {
@@ -46,32 +47,32 @@ public class MainActivity extends AppCompatActivity{
        clear(view);
        x = 1;
    }
-   
+
    public void subtracao(View view){
        valor = Double.parseDouble(auxiliar);
        clear(view);
        x = 2;
    }
-   
+
    public void multiplicacao(View view){
        valor = Double.parseDouble(auxiliar);
        clear(view);
        x = 3;
    }
-   
+
    public void divisao(View view){
        valor = Double.parseDouble(auxiliar);
        clear(view);
        x = 4;
    }
 
-    public void porcento(View view){
+   public void porcento(View view){
         valor = Double.parseDouble(auxiliar);
         clear(view);
         x = 5;
     }
 
-    public void sinal(View view){
+   public void sinal(View view){
         valor = Double.parseDouble(auxiliar);
         valor *= (-1);
         campo.setText(String.valueOf(valor));
