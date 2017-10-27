@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity{
     private String auxiliar;
     private double valor = 0 ;
     private int x;
+
     @Override
    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -73,11 +74,13 @@ public class MainActivity extends AppCompatActivity{
         x = 5;
     }
 
-/*   public void sinal(View view){
+    /*
+   public void sinal(View view){
         valor = Double.parseDouble(auxiliar);
         valor *= (-1);
         campo.setText(String.valueOf(valor));
-    }*/
+    }
+    */
 
    public void igual(View view){
        switch (x){
