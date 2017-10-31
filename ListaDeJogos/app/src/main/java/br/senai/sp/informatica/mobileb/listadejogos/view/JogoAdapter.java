@@ -19,13 +19,13 @@ public class JogoAdapter extends BaseAdapter{
     }
 
     @Override
-    public Object getItem(int position) {
-        return null;
+    public Object getItem(int id) {
+        return dao.getLista();
     }
 
     @Override
-    public long getItemId(int position) {
-        return 0;
+    public long getItemId(int pos) {
+        return dao.getLista().get(pos).getId();
     }
 
     @Override
