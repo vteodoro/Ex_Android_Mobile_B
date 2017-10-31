@@ -10,7 +10,9 @@ public class Jogo {
     private String nome;
     private String genero;
 
-    public Jogo(Long id){}
+    public Jogo(Long id, String nome, String genero){}
+
+    public Jogo (Long id){}
 
     public Long getId() {
         return id;
