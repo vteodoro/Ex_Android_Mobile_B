@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">ListaDeJogos</string>
+    <string name="tvJogo">tvJogo</string>
+    <string name="tvGenero">tvGenero</string>
 </resources>

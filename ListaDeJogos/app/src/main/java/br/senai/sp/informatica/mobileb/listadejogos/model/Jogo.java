@@ -5,14 +5,22 @@ package br.senai.sp.informatica.mobileb.listadejogos.model;
  */
 
 public class Jogo {
-
     private Long id;
     private String nome;
     private String genero;
 
-    public Jogo(Long id, String nome, String genero){}
+    public Jogo() {
+    }
 
-    public Jogo (Long id){}
+    public Jogo(Long id) {
+        this.id = id;
+    }
+
+    public Jogo(Long id, String nome, String genero) {
+        this.id = id;
+        this.nome = nome;
+        this.genero = genero;
+    }
 
     public Long getId() {
         return id;
@@ -36,5 +44,22 @@ public class Jogo {
 
     public void setGenero(String genero) {
         this.genero = genero;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Jogo)) return false;
+
+        Jogo jogo = (Jogo) o;
+
+        if (!id.equals(jogo.id)) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
     }
 }
