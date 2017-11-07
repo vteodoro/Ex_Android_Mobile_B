@@ -43,9 +43,6 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
             case R.id.insert:
                 startActivity(new Intent(this, CriarActivity.class));
                 break;
-            case R.id.delete:
-                startActivity(new Intent(this, DeletarActivity.class));
-                break;
         }
         return true;
     }
