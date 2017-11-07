@@ -16,9 +16,6 @@ import br.senai.sp.informatica.mobileb.listadejogos.R;
 import br.senai.sp.informatica.mobileb.listadejogos.model.Jogo;
 import br.senai.sp.informatica.mobileb.listadejogos.model.JogoDAO;
 
-/**
- * Created by 45948375811 on 31/10/2017.
- */
 
 class JogoAdapter extends BaseAdapter {
     private JogoDAO dao = JogoDAO.manager;

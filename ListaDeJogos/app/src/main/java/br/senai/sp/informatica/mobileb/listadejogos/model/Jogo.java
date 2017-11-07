@@ -1,9 +1,5 @@
 package br.senai.sp.informatica.mobileb.listadejogos.model;
 
-/**
- * Created by vivi on 31/10/2017.
- */
-
 public class Jogo {
     private Long id;
     private String nome;

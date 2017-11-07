@@ -4,10 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
-/**
- * Created by vivi on 31/10/2017.
- */
-
 public class JogoDAO {
     public static JogoDAO manager = new JogoDAO();
     private List<Jogo> lista;

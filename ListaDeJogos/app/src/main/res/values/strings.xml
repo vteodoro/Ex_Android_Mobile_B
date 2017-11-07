@@ -2,4 +2,10 @@
     <string name="app_name">ListaDeJogos</string>
     <string name="tvJogo">tvJogo</string>
     <string name="tvGenero">tvGenero</string>
+    <string name="adicionar">adicionar</string>
+    <string name="editar">editar</string>
+    <string name="apagar">apagar</string>
+    <string name="cat_logo_de_jogos">Catálogo de jogos</string>
+    <string name="jogo">Jogo</string>
+    <string name="inserir_jogo">Inserir Jogo</string>
 </resources>
