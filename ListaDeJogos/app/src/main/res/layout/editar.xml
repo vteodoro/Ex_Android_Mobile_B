@@ -7,26 +7,27 @@
     android:layout_height="match_parent">
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/btnSalvar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="35dp"
         android:text="Salvar"
+        android:onClick="salvarJogo"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/edGeneroEditar" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/edGeneroEditar"
         android:layout_width="0dp"
         android:layout_height="47dp"
         android:ems="10"
         android:hint="Gênero"
         android:inputType="textPersonName"
         android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/editText4"
+        app:layout_constraintTop_toBottomOf="@+id/edJogoEditar"
         android:layout_marginLeft="8dp"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
@@ -34,7 +35,7 @@
         app:layout_constraintHorizontal_bias="0.0" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edJogoEditar"
         tools:ignore="MissingConstraints"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -45,19 +46,8 @@
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginRight="8dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginTop="25dp"
-        app:layout_constraintTop_toBottomOf="@+id/txtEditar" />
-
-    <TextView
-        android:id="@+id/txtEditar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Editar"
-        android:textSize="20dp"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="35dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent" />
+        android:layout_marginTop="40dp" />
+
 </android.support.constraint.ConstraintLayout>

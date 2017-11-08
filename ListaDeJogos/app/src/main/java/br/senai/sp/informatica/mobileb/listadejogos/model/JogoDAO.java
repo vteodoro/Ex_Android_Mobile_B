@@ -22,6 +22,7 @@ public class JogoDAO {
     }
 
     public List<Jogo> getLista() {
+        Collections.sort(lista);
         return Collections.synchronizedList(lista);
     }
 
@@ -33,13 +34,11 @@ public class JogoDAO {
                 break;
             }
         }
-
-        Jogo jogoLocalizado = lista.get(lista.indexOf(new Jogo(id)));
         return oJogo;
     }
 
     public void salvar(Jogo obj) {
-        if(obj.getId() != null) {
+        if(obj.getId() == null) {
             obj.setId(id++);
             lista.add(obj);
         } else {

@@ -15,7 +15,8 @@ import br.senai.sp.informatica.mobileb.listadejogos.R;
 public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
     private ListView listView;
     private BaseAdapter itemLista;
-
+    private final int EDITA_JOGO = 0;
+    private Intent i;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,8 +26,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         itemLista = new JogoAdapter();
 
         listView = (ListView) findViewById(R.id.lvLista);
-        listView.setAdapter(new JogoAdapter());
+        listView.setAdapter(itemLista);
         listView.setOnItemClickListener(this);
+        i = new Intent(getBaseContext(), EditarActivity.class);
     }
 
     @Override
@@ -39,18 +41,24 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        switch (id){
-            case R.id.insert:
-                startActivity(new Intent(this, CriarActivity.class));
-                break;
+        if(id == R.id.insert){
+            i.removeExtra("id");
+            startActivityForResult(i, EDITA_JOGO);
         }
         return true;
     }
 
     @Override
     public void onItemClick(AdapterView<?> parent, View view, int linha, long id){
-        Intent i = new Intent(getBaseContext(), EditarActivity.class);
         i.putExtra("id", id);
-        startActivity(i);
+        startActivityForResult(i, EDITA_JOGO);
     }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if(resultCode == RESULT_OK) {
+            itemLista.notifyDataSetChanged();
+        }
+    }
+
 }
