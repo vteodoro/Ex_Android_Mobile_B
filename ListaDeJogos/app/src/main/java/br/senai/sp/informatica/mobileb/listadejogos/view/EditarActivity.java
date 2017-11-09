@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
 import br.senai.sp.informatica.mobileb.listadejogos.R;
@@ -16,6 +17,8 @@ public class EditarActivity extends AppCompatActivity {
         private EditText edJogo;
         private EditText edGenero;
         private Jogo jogo;
+        private MenuItem menuItem;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +44,8 @@ public class EditarActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu, menu);
+        menuItem = menu.findItem(R.id.insert);
+        menuItem.setVisible(false);
         return true;
     }
 

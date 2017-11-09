@@ -16,7 +16,6 @@ import br.senai.sp.informatica.mobileb.listadejogos.R;
 import br.senai.sp.informatica.mobileb.listadejogos.model.Jogo;
 import br.senai.sp.informatica.mobileb.listadejogos.model.JogoDAO;
 
-
 class JogoAdapter extends BaseAdapter {
     private JogoDAO dao = JogoDAO.manager;
     private Map<Integer, Long> mapa;
