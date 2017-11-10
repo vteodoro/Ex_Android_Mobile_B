@@ -5,4 +5,5 @@
     <color name="colorAccent">#1c0125</color>
     <color name="colorlist">#dbc7e2</color>
     <color name="colorback">#ece7ed</color>
+    <color name="trash">#f77777</color>
 </resources>
