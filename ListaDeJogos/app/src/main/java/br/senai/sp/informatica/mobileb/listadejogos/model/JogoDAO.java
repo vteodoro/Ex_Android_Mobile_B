@@ -11,14 +11,13 @@ public class JogoDAO {
 
     private JogoDAO() {
         lista = new ArrayList<>();
-        lista.add(new Jogo(id++, "Mortal Kombat", "Luta"));
+        lista.add(new Jogo(id++, "Mortal Kombat", "Fight"));
         lista.add(new Jogo(id++, "Campo Minado", "Puzzle"));
         lista.add(new Jogo(id++, "Left 4 Dead", "Survivor Horror"));
         lista.add(new Jogo(id++, "GTA V", "TPS"));
-        lista.add(new Jogo(id++, "Forza MotorSport 7", "Corrida"));
+        lista.add(new Jogo(id++, "Forza MotorSport 7", "Racing"));
         lista.add(new Jogo(id++, "Obscure 2 - The Aftermath", "Survivor Horror"));
         lista.add(new Jogo(id++, "Devil May Cry", "Hack and Slash"));
-
     }
 
     public List<Jogo> getLista() {
