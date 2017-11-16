@@ -1,12 +1,17 @@
 package br.senai.sp.informatica.mobileb.listademusicas.model;
 
+import android.support.annotation.NonNull;
 
-public class Musica {
+public class Musica implements Comparable<Musica>{
     private Long id;
     private String titulo;
     private String artista;
     private String album;
     private String dtInclusao;
+
+    public Musica(){}
+
+    public Musica(Long id){ this.id = id;}
 
     public Musica (Long id, String titulo, String artista, String album, String dtInclusao){
         this.id = id;
@@ -48,11 +53,11 @@ public class Musica {
         this.album = album;
     }
 
-    public String getdtInclusao() {
+    public String getDtInclusao() {
         return dtInclusao;
     }
 
-    public void setdtInclusao(String dtInclusao) {
+    public void setDtInclusao(String dtInclusao) {
         this.dtInclusao = dtInclusao;
     }
 
@@ -79,5 +84,10 @@ public class Musica {
         result = 31 * result + album.hashCode();
         result = 31 * result + dtInclusao.hashCode();
         return result;
+    }
+
+    @Override
+    public int compareTo(@NonNull Musica x) {
+        return titulo.toLowerCase().compareTo(x.titulo.toLowerCase());
     }
 }
