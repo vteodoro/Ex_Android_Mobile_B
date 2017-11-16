@@ -4,4 +4,7 @@
     <string name="album">Album</string>
     <string name="data">Data</string>
     <string name="titulo">Titulo</string>
+    <string name="titulodet">Titulo</string>
+    <string name="artistadet">Artista</string>
+    <string name="dataincdet">16.11.17</string>
 </resources>
