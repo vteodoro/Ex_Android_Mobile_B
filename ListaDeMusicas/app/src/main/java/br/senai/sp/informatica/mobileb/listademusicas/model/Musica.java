@@ -8,6 +8,7 @@ public class Musica implements Comparable<Musica>{
     private String artista;
     private String album;
     private String dtInclusao;
+    private byte[] capa;
 
     public Musica(){}
 
@@ -59,6 +60,14 @@ public class Musica implements Comparable<Musica>{
 
     public void setDtInclusao(String dtInclusao) {
         this.dtInclusao = dtInclusao;
+    }
+
+    public byte[] getCapa() {
+        return capa;
+    }
+
+    public void setCapa(byte[] capa) {
+        this.capa = capa;
     }
 
     @Override

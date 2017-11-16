@@ -38,5 +38,13 @@ public class MusicaDAO {
         }
         return objMus;
     }
-
+    public void salvar(Musica obj){
+        if(obj.getId() == null){
+            obj.setId(id++);
+            lista.add(obj);
+        } else{
+            int posicao = lista.indexOf(new Musica(obj.getId()));
+            lista.set(posicao, obj);
+        }
+    }
 }

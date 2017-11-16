@@ -50,11 +50,9 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void salvarJogo(View view){
-
         if(jogo == null) {
             jogo = new Jogo();
         }
-
         jogo.setNome(edJogo.getText().toString());
         jogo.setGenero(edGenero.getText().toString());
         dao.salvar(jogo);
