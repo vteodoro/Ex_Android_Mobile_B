@@ -78,8 +78,7 @@ public class MusicaAdapter extends BaseAdapter{
         tvArtista.setText(musica.getArtista());
         tvAlbum.setText(musica.getAlbum());
         tvDataInc.setText(musica.getDtInclusao());
-
-
+        
         return layout;
     }
 }

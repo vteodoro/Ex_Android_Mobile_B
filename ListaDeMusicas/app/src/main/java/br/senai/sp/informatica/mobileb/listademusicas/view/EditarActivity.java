@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -17,6 +19,7 @@ public class EditarActivity extends AppCompatActivity{
     private TextView edArtista;
     private TextView edDataInc;
     private Musica musica;
+    private MenuItem menuItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,12 +45,20 @@ public class EditarActivity extends AppCompatActivity{
         }
     }
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        menuItem = menu.findItem(R.id.edit);
+        menuItem.setVisible(false);
+        return true;
+    }
+
     public void salvarMusica(View view){
         if(musica == null){
             musica = new Musica();
         }
         musica.setTitulo(edTitulo.getText().toString());
-        musica.setTitulo(edArtista.getText().toString());
+        musica.setArtista(edArtista.getText().toString());
         dao.salvar(musica);
         setResult(Activity.RESULT_OK);
 
