@@ -68,22 +68,13 @@ public class Musica implements Comparable<Musica>{
 
         Musica musica = (Musica) o;
 
-        if (!id.equals(musica.id)) return false;
-        if (!titulo.equals(musica.titulo)) return false;
-        if (!artista.equals(musica.artista)) return false;
-        if (!album.equals(musica.album)) return false;
-        return dtInclusao.equals(musica.dtInclusao);
+        return id.equals(musica.id);
 
     }
 
     @Override
     public int hashCode() {
-        int result = id.hashCode();
-        result = 31 * result + titulo.hashCode();
-        result = 31 * result + artista.hashCode();
-        result = 31 * result + album.hashCode();
-        result = 31 * result + dtInclusao.hashCode();
-        return result;
+        return id.hashCode();
     }
 
     @Override
