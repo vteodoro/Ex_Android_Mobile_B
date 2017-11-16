@@ -4,11 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorBack"
     tools:context="br.senai.sp.informatica.mobileb.listademusicas.view.MainActivity">
 
     <ListView
         android:id="@+id/lvLista"
+        android:background="@color/colorBack"
         android:layout_width="362dp"
         android:layout_height="412dp"
         android:layout_marginRight="8dp"
