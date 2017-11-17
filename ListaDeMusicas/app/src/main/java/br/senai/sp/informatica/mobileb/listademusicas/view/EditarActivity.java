@@ -62,6 +62,7 @@ public class EditarActivity extends AppCompatActivity{
         dao.salvar(musica);
         setResult(Activity.RESULT_OK);
 
+        finish();
     }
 
 }
