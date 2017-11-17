@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import br.senai.sp.informatica.mobileb.listademusicas.R;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
@@ -75,9 +76,13 @@ public class EditarActivity extends AppCompatActivity {
         musica.setArtista(edArtista.getText().toString());
         musica.setAlbum(edAlbum.getText().toString());
         musica.setDtInclusao(edDataInc.getText().toString());
-        dao.salvar(musica);
-        setResult(Activity.RESULT_OK);
 
-        finish();
+        if(edTitulo.getText().toString().isEmpty() || edArtista.getText().toString().isEmpty() || edAlbum.getText().toString().isEmpty() || edDataInc.getText().toString().isEmpty()){
+            Toast.makeText(this, "Cadastro incompleto", Toast.LENGTH_SHORT).show();
+        }else {
+            dao.salvar(musica);
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
     }
 }
