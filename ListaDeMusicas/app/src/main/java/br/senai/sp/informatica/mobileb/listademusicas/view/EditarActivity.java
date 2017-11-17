@@ -6,18 +6,18 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
 import android.widget.TextView;
 
 import br.senai.sp.informatica.mobileb.listademusicas.R;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
 import br.senai.sp.informatica.mobileb.listademusicas.model.MusicaDAO;
 
-public class EditarActivity extends AppCompatActivity{
+public class EditarActivity extends AppCompatActivity {
     private MusicaDAO dao = MusicaDAO.manager;
     private TextView edTitulo;
     private TextView edArtista;
     private TextView edDataInc;
+    private TextView edAlbum;
     private Musica musica;
     private MenuItem menuItem;
 
@@ -26,20 +26,22 @@ public class EditarActivity extends AppCompatActivity{
         super.onCreate(savedInstanceState);
         setContentView((R.layout.detalhe_layout));
 
-        edTitulo = (TextView) findViewById(R.id.tvTituloDet);
-        edArtista = (TextView) findViewById(R.id.tvArtistaDet);
-        edDataInc = (TextView) findViewById(R.id.tvDataIncDet);
+        edTitulo = (TextView) findViewById(R.id.edTituloDet);
+        edArtista = (TextView) findViewById(R.id.edArtistaDet);
+        edDataInc = (TextView) findViewById(R.id.edDataIncDet);
+        edAlbum = (TextView) findViewById(R.id.edAlbumDet);
 
         Intent intent = getIntent();
-        if(intent != null){
+        if (intent != null) {
             Bundle dados = intent.getExtras();
-            if(dados != null){
-                long id =  dados.getLong("id");
+            if (dados != null) {
+                long id = dados.getLong("id");
                 musica = dao.getMusica(id);
-                if(musica != null){
+                if (musica != null) {
                     edTitulo.setText(musica.getTitulo());
                     edArtista.setText(musica.getArtista());
                     edDataInc.setText(musica.getDtInclusao());
+                    edAlbum.setText(musica.getAlbum());
                 }
             }
         }
@@ -47,22 +49,35 @@ public class EditarActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu, menu);
-        menuItem = menu.findItem(R.id.edit);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
+        menuItem = menu.findItem(R.id.add);
         menuItem.setVisible(false);
+        menuItem = menu.findItem(R.id.save);
+        menuItem.setVisible(true);
         return true;
     }
 
-    public void salvarMusica(View view){
-        if(musica == null){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.save) {
+            salvarMusica();
+        }
+        return true;
+    }
+
+    public void salvarMusica() {
+        if (musica == null) {
             musica = new Musica();
         }
         musica.setTitulo(edTitulo.getText().toString());
         musica.setArtista(edArtista.getText().toString());
+        musica.setAlbum(edAlbum.getText().toString());
+        musica.setDtInclusao(edDataInc.getText().toString());
         dao.salvar(musica);
         setResult(Activity.RESULT_OK);
 
         finish();
     }
-
 }

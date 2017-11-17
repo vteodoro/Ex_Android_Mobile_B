@@ -6,7 +6,6 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
@@ -29,15 +28,15 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         listView = (ListView) findViewById(R.id.lvLista);
         listView.setAdapter(itemLista);
         listView.setOnItemClickListener(this);
-        i = new Intent(getBaseContext(), EditarActivity.class);
 
+        i = new Intent(getBaseContext(), EditarActivity.class);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
 
-        if(id == R.id.edit){
+        if(id == R.id.add){
             i.removeExtra("id");
             startActivityForResult(i, EDITA_MUSICA);
         }
@@ -46,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu, menu);
+        getMenuInflater().inflate(R.menu.menu_add, menu);
         return true;
     }
 

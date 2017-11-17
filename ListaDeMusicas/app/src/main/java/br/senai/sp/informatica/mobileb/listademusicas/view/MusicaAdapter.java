@@ -67,7 +67,7 @@ public class MusicaAdapter extends BaseAdapter{
         }
 
         TextView tvTitulo = layout.findViewById(R.id.tvTitulo);
-        TextView tvArtista = layout.findViewById(R.id.tvArtistaDet);
+        TextView tvArtista = layout.findViewById(R.id.tvArtista);
         TextView tvAlbum = layout.findViewById(R.id.tvAlbum);
         TextView tvDataInc = layout.findViewById(R.id.tvDataInc);
 

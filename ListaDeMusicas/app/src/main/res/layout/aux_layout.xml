@@ -34,7 +34,7 @@
         app:layout_constraintHorizontal_bias="0.0" />
 
     <TextView
-        android:id="@+id/tvArtistaDet"
+        android:id="@+id/tvArtista"
         android:layout_width="0dp"
         android:layout_height="18dp"
         android:layout_marginRight="8dp"
@@ -61,7 +61,7 @@
         android:text="@string/album"
         android:textSize="12dp"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/tvArtistaDet"
+        app:layout_constraintTop_toBottomOf="@+id/tvArtista"
         tools:ignore="SpUsage"
         app:layout_constraintLeft_toRightOf="@+id/imageView"
         android:layout_marginLeft="8dp"
