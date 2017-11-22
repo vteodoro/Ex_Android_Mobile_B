@@ -1,11 +1,11 @@
 package br.senai.sp.informatica.mobileb.listademusicas.view;
 
 import android.content.Context;
-import android.support.constraint.ConstraintLayout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import java.util.HashMap;
@@ -56,14 +56,14 @@ public class MusicaAdapter extends BaseAdapter{
     @Override
     public View getView(int linha, View view, ViewGroup viewGroup) {
 
-        ConstraintLayout layout;
+        FrameLayout layout;
         if(view == null){
             Context ctx = viewGroup.getContext();
             LayoutInflater inflater = (LayoutInflater) ctx.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            layout = new ConstraintLayout(ctx);
+            layout = new FrameLayout(ctx);
             inflater.inflate(R.layout.aux_layout, layout);
         }else{
-            layout = (ConstraintLayout)view;
+            layout = (FrameLayout)view;
         }
 
         TextView tvTitulo = layout.findViewById(R.id.tvTitulo);

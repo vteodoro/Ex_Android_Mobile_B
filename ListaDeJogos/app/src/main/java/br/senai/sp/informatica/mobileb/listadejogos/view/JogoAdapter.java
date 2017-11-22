@@ -6,7 +6,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.daimajia.swipe.SwipeLayout;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,7 +18,7 @@ import br.senai.sp.informatica.mobileb.listadejogos.R;
 import br.senai.sp.informatica.mobileb.listadejogos.model.Jogo;
 import br.senai.sp.informatica.mobileb.listadejogos.model.JogoDAO;
 
-class JogoAdapter extends BaseAdapter {
+class JogoAdapter extends BaseAdapter implements View.OnClickListener{
     private JogoDAO dao = JogoDAO.manager;
     private Map<Integer, Long> mapa;
 
@@ -75,6 +79,19 @@ class JogoAdapter extends BaseAdapter {
         tvJogo.setText(jogo.getNome());
         tvGenero.setText(jogo.getGenero());
 
+        SwipeLayout swipeLayout = layout.findViewById(R.id.swipe_delete);
+        swipeLayout.close();
+        ImageView imageView = layout.findViewById(R.id.trash);
+        imageView.setOnClickListener(this);
+        imageView.setTag(jogo.getId());
+
         return layout;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Long id = (Long) view.getTag();
+        dao.remover(id);
+        notifyDataSetChanged();
     }
 }

@@ -1,0 +1,57 @@
+Musica Adapter:
+
+public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
+
+
+getView{
+...
+
+	SwipeLayout swipeLayout = layout.findViewById(R.id.swipe_delete);
+        swipeLayout.close();
+        ImageView imageView = layout.findViewById(R.id.trash);
+        imageView.setOnClickListener(this);
+        imageView.setTag(musica.getId());
+
+    return layout;
+}
+
+    @Override
+    public void onClick(View view) {
+        Long id = (Long) view.getTag();
+        dao.remover(id);
+        notifyDataSetChanged();
+    }
+	
+}
+
+AuxLayout:
+
+ <com.daimajia.swipe.SwipeLayout
+        android:id="@+id/swipe_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+        android:layout_width="80dp"
+        android:layout_height="match_parent">
+
+            <ImageView
+            android:id="@+id/trash"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#ef716a"
+            android:paddingLeft="25dp"
+            android:paddingRight="25dp"
+            android:src="@drawable/delete" />
+    </LinearLayout>
+	
+	<tela.../>
+	
+</com.daimajia.swipe.SwipeLayout>
+
+MusicaDAO:
+
+
+public void remover(Long id) {
+    lista.remove(new Musica(id));
+}
