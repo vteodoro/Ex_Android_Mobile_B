@@ -60,5 +60,4 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         i.putExtra("id", id);
         startActivityForResult(i, EDITA_MUSICA);
     }
-
 }

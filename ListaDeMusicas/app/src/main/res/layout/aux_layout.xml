@@ -14,7 +14,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
-
             <TextView
                 android:id="@+id/tvTitulo"
                 android:layout_width="0dp"
@@ -37,47 +36,43 @@
                 android:id="@+id/tvArtista"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/artista"
                 android:textSize="12dp"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvTitulo"
                 tools:ignore="SpUsage"
                 app:layout_constraintLeft_toRightOf="@+id/imageView"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintHorizontal_bias="0.0" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
                 android:id="@+id/tvAlbum"
                 android:layout_width="0dp"
                 android:layout_height="18dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/album"
                 android:textSize="12dp"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvArtista"
                 tools:ignore="SpUsage"
                 app:layout_constraintLeft_toRightOf="@+id/imageView"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintHorizontal_bias="0.0" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent" />
 
             <TextView
                 android:id="@+id/tvDataInc"
                 android:layout_width="0dp"
                 android:layout_height="19dp"
-                android:layout_marginRight="8dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="8dp"
                 android:text="@string/data"
                 android:textSize="12dp"
-                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvAlbum"
                 tools:ignore="SpUsage"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -85,7 +80,8 @@
                 app:layout_constraintVertical_bias="0.0"
                 app:layout_constraintLeft_toRightOf="@+id/imageView"
                 android:layout_marginLeft="8dp"
-                app:layout_constraintHorizontal_bias="0.0" />
+                android:layout_marginRight="8dp"
+                app:layout_constraintRight_toRightOf="parent" />
 
             <ImageView
                 android:id="@+id/imageView"
@@ -99,5 +95,5 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 android:layout_marginBottom="8dp"
                 tools:ignore="ContentDescription,RtlHardcoded" />
-</android.support.constraint.ConstraintLayout>
+        </android.support.constraint.ConstraintLayout>
 </FrameLayout>

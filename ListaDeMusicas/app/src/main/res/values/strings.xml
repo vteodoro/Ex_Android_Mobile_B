@@ -1,13 +1,13 @@
 <resources>
-    <string name="app_name">Musicas</string>
+    <string name="app_name">Músicas</string>
     <string name="artista">Artista</string>
-    <string name="album">Album</string>
-    <string name="data">Data</string>
-    <string name="titulo">Titulo</string>
-    <string name="titulodet">Titulo</string>
+    <string name="album">Álbum</string>
+    <string name="data">Data de inclusão</string>
+    <string name="titulo">Título</string>
+    <string name="titulodet">Título</string>
     <string name="artistadet">Artista</string>
-    <string name="albumdet">Album</string>
-    <string name="dataincdet">Data de inclusao</string>
+    <string name="albumdet">Álbum</string>
+    <string name="dataincdet">Data de inclusão</string>
     <string name="add">Criar</string>
     <string name="save">Salvar</string>
 </resources>
