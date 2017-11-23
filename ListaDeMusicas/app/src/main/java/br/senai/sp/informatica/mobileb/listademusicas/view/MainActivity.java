@@ -20,19 +20,15 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         itemLista = new MusicaAdapter(this);
-
         listView = (ListView) findViewById(R.id.lvLista);
         listView.setAdapter(itemLista);
-
         i = new Intent(getBaseContext(), EditarActivity.class);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if(id == R.id.add){
             i.removeExtra("id");
             startActivityForResult(i, EDITA_MUSICA);

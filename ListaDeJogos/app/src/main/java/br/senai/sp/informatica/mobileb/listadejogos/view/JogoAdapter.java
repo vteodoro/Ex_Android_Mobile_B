@@ -21,9 +21,11 @@ import br.senai.sp.informatica.mobileb.listadejogos.model.JogoDAO;
 class JogoAdapter extends BaseAdapter implements View.OnClickListener{
     private JogoDAO dao = JogoDAO.manager;
     private Map<Integer, Long> mapa;
+    private EditarJogos delegate;
 
-    public JogoAdapter(){
+    public JogoAdapter(EditarJogos edJ){
         criaMapa();
+        delegate = edJ;
     }
 
     @Override
@@ -72,18 +74,19 @@ class JogoAdapter extends BaseAdapter implements View.OnClickListener{
 
         TextView tvJogo = layout.findViewById(R.id.tvJogo);
         TextView tvGenero = layout.findViewById(R.id.tvGenero);
-
         Long id = mapa.get(linha);
         Jogo jogo = dao.getJogo(id);
-
         tvJogo.setText(jogo.getNome());
         tvGenero.setText(jogo.getGenero());
 
         SwipeLayout swipeLayout = layout.findViewById(R.id.swipe_delete);
         swipeLayout.close();
-        ImageView imageView = layout.findViewById(R.id.trash);
-        imageView.setOnClickListener(this);
-        imageView.setTag(jogo.getId());
+        ImageView apagar = layout.findViewById(R.id.trash);
+        ImageView editar = layout.findViewById(R.id.edit);
+        editar.setOnClickListener(this);
+        editar.setTag(jogo.getId());
+        apagar.setOnClickListener(this);
+        apagar.setTag(jogo.getId());
 
         return layout;
     }
@@ -91,7 +94,12 @@ class JogoAdapter extends BaseAdapter implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         Long id = (Long) view.getTag();
-        dao.remover(id);
-        notifyDataSetChanged();
+        int idView = view.getId();
+        if(idView == R.id.trash){
+            dao.remover(id);
+            notifyDataSetChanged();
+        }else {
+            delegate.executa(id);
+        }
     }
 }

@@ -12,22 +12,20 @@ import android.widget.ListView;
 
 import br.senai.sp.informatica.mobileb.listadejogos.R;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener {
+public class MainActivity extends AppCompatActivity implements EditarJogos {
     private ListView listView;
     private BaseAdapter itemLista;
     private final int EDITA_JOGO = 0;
     private Intent i;
+    private final int EDITA_JOGOS = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        itemLista = new JogoAdapter();
-
+        itemLista = new JogoAdapter(this);
         listView = (ListView) findViewById(R.id.lvLista);
         listView.setAdapter(itemLista);
-        listView.setOnItemClickListener(this);
         i = new Intent(getBaseContext(), EditarActivity.class);
     }
 
@@ -40,18 +38,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-
         if(id == R.id.insert){
             i.removeExtra("id");
             startActivityForResult(i, EDITA_JOGO);
         }
         return true;
-    }
-
-    @Override
-    public void onItemClick(AdapterView<?> parent, View view, int linha, long id){
-        i.putExtra("id", id);
-        startActivityForResult(i, EDITA_JOGO);
     }
 
     @Override
@@ -61,4 +52,9 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         }
     }
 
+    @Override
+    public void executa(long id) {
+        i.putExtra("id", id);
+        startActivityForResult(i, EDITA_JOGOS);
+    }
 }

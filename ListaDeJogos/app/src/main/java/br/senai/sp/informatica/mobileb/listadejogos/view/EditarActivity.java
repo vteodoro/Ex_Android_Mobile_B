@@ -8,6 +8,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
+
 import br.senai.sp.informatica.mobileb.listadejogos.R;
 import br.senai.sp.informatica.mobileb.listadejogos.model.Jogo;
 import br.senai.sp.informatica.mobileb.listadejogos.model.JogoDAO;
@@ -46,19 +48,34 @@ public class EditarActivity extends AppCompatActivity {
         getMenuInflater().inflate(R.menu.menu, menu);
         menuItem = menu.findItem(R.id.insert);
         menuItem.setVisible(false);
+        menuItem = menu.findItem(R.id.save);
+        menuItem.setVisible(true);
         return true;
     }
 
-    public void salvarJogo(View view){
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+
+        if (id == R.id.save) {
+            salvarJogo();
+        }
+        return true;
+    }
+
+    public void salvarJogo(){
         if(jogo == null) {
             jogo = new Jogo();
         }
         jogo.setNome(edJogo.getText().toString());
         jogo.setGenero(edGenero.getText().toString());
-        dao.salvar(jogo);
-        setResult(Activity.RESULT_OK);
-
-        finish();
+        if(edJogo.getText().toString().isEmpty() || edGenero.getText().toString().isEmpty()){
+            Toast.makeText(this, "Cadastro incompleto", Toast.LENGTH_SHORT).show();
+        }else {
+            dao.salvar(jogo);
+            setResult(Activity.RESULT_OK);
+            finish();
+        }
     }
 
 

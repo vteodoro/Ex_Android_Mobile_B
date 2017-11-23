@@ -75,10 +75,8 @@ public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
         TextView tvArtista = layout.findViewById(R.id.tvArtista);
         TextView tvAlbum = layout.findViewById(R.id.tvAlbum);
         TextView tvDataInc = layout.findViewById(R.id.tvDataInc);
-
         Long id = mapa.get(linha);
         Musica musica = dao.getMusica(id);
-
         tvTitulo.setText(musica.getTitulo());
         tvArtista.setText(musica.getArtista());
         tvAlbum.setText(musica.getAlbum());
