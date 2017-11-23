@@ -1,26 +1,31 @@
 package br.senai.sp.informatica.mobileb.listademusicas.view;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
+import android.widget.ImageView;
 import android.widget.TextView;
-
+import com.daimajia.swipe.SwipeLayout;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
 import br.senai.sp.informatica.mobileb.listademusicas.R;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
 import br.senai.sp.informatica.mobileb.listademusicas.model.MusicaDAO;
 
-public class MusicaAdapter extends BaseAdapter{
+public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
     private MusicaDAO dao = MusicaDAO.manager;
     private Map<Integer, Long> mapa;
+    private EditarMusicas delegate;
 
-    public MusicaAdapter(){ criaMapa();}
+    public MusicaAdapter(EditarMusicas edM){
+        criaMapa();
+        delegate = edM;
+    }
 
     @Override
     public void notifyDataSetChanged() {
@@ -79,6 +84,27 @@ public class MusicaAdapter extends BaseAdapter{
         tvAlbum.setText(musica.getAlbum());
         tvDataInc.setText(musica.getDtInclusao());
 
+        SwipeLayout swipeLayout = layout.findViewById(R.id.swipe_delete);
+        swipeLayout.close();
+        ImageView apagar = layout.findViewById(R.id.trash);
+        ImageView editar = layout.findViewById(R.id.edit);
+        editar.setOnClickListener(this);
+        editar.setTag(musica.getId());
+        apagar.setOnClickListener(this);
+        apagar.setTag(musica.getId());
+
         return layout;
+    }
+
+    @Override
+    public void onClick(View view) {
+        Long id = (Long) view.getTag();
+        int idView = view.getId();
+        if(idView == R.id.trash){
+            dao.remover(id);
+            notifyDataSetChanged();
+        }else {
+            delegate.executa(id);
+        }
     }
 }

@@ -80,7 +80,6 @@ public class Musica implements Comparable<Musica>{
         if (!id.equals(musica.id)) return false;
 
         return true;
-
     }
 
     @Override

@@ -5,14 +5,12 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 
 import br.senai.sp.informatica.mobileb.listademusicas.R;
 
-public class MainActivity extends AppCompatActivity implements AdapterView.OnItemClickListener{
+public class MainActivity extends AppCompatActivity implements  EditarMusicas{
     private ListView listView;
     private BaseAdapter itemLista;
     private Intent i;
@@ -23,11 +21,11 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        itemLista = new MusicaAdapter();
+        itemLista = new MusicaAdapter(this);
 
         listView = (ListView) findViewById(R.id.lvLista);
         listView.setAdapter(itemLista);
-        listView.setOnItemClickListener(this);
+
         i = new Intent(getBaseContext(), EditarActivity.class);
     }
 
@@ -56,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements AdapterView.OnIte
     }
 
     @Override
-    public void onItemClick(AdapterView<?> parent, View view, int linha, long id){
+    public void executa(long id) {
         i.putExtra("id", id);
         startActivityForResult(i, EDITA_MUSICA);
     }

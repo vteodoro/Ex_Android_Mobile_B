@@ -38,6 +38,7 @@ public class MusicaDAO {
         }
         return objMus;
     }
+
     public void salvar(Musica obj){
         if(obj.getId() == null){
             obj.setId(id++);
@@ -46,5 +47,9 @@ public class MusicaDAO {
             int posicao = lista.indexOf(new Musica(obj.getId()));
             lista.set(posicao, obj);
         }
+    }
+
+    public void remover(Long id) {
+        lista.remove(new Musica(id));
     }
 }
