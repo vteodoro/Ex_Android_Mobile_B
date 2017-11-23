@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ListaDeJogos</string>
+    <string name="app_name">Jogos</string>
     <string name="tvJogo">tvJogo</string>
     <string name="tvGenero">tvGenero</string>
     <string name="adicionar">adicionar</string>
