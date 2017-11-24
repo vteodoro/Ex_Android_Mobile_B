@@ -4,53 +4,34 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
-import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import java.text.DateFormat;
-import java.text.ParseException;
 import java.util.Calendar;
 
-public class DateDialog extends DialogFragment {
-    private View view;
+public class DateDialog extends DialogFragment implements DatePickerDialog.OnDateSetListener {
     private Calendar calendar;
     private EditText editText;
     private static DateFormat fmt = DateFormat.getDateInstance(DateFormat.LONG);
 
-    public Dialog onCreateDialog(Bundle savedInstanceState){
-        DatePickerDialog.OnDateSetListener listener = new DatePickerDialog.OnDateSetListener(){
+    public static DateDialog makeDialog(Calendar calendar, EditText editText) {
+        DateDialog dialog = new DateDialog();
+        dialog.calendar = calendar;
+        dialog.editText = editText;
+        return dialog;
+    }
 
-            @Override
-            public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
-                calendar.set(ano, mes, dia);
-                editText.setText(fmt.format(calendar.getTime()));
-            }
-        };
-
-        try{
-            calendar.setTime(fmt.parse(editText.getText().toString()));
-        }catch (ParseException e){
-        }
-
+    public Dialog onCreateDialog(Bundle savedInstanceState) {
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
         int mes = calendar.get(Calendar.MONTH);
         int ano = calendar.get(Calendar.YEAR);
 
-        DatePickerDialog dialog = new DatePickerDialog(view.getContext(), listener, ano, mes, dia);
-        return dialog;
+        return new DatePickerDialog(getActivity(), this, ano, mes, dia);
     }
 
-    public void setView(View view){
-        this.view = view;
+    @Override
+    public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
+        calendar.set(ano, mes, dia);
+        editText.setText(fmt.format(calendar.getTime()));
     }
-
-    public void setCalendar(Calendar calendar){
-        this.calendar = calendar;
-    }
-
-    public void setEditText(EditText editText){
-        this.editText = editText;
-    }
-
-
 }
