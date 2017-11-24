@@ -23,7 +23,8 @@
                 android:background="@color/colorEdit"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
-                android:src="@drawable/edit" />
+                android:src="@drawable/edit"
+                tools:ignore="ContentDescription" />
 
             <ImageView
                 android:id="@+id/trash"
@@ -32,7 +33,9 @@
                 android:background="@color/colorTrash"
                 android:paddingLeft="25dp"
                 android:paddingRight="25dp"
-                android:src="@drawable/delete" />
+                android:src="@drawable/delete"
+                android:contentDescription=""
+                tools:ignore="ContentDescription" />
 
         </LinearLayout>
 
