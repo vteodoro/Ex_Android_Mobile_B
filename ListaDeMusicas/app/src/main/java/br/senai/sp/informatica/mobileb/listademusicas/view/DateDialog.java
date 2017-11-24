@@ -2,15 +2,14 @@ package br.senai.sp.informatica.mobileb.listademusicas.view;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.view.View;
 import android.widget.DatePicker;
 import android.widget.EditText;
-
 import java.text.DateFormat;
 import java.text.ParseException;
+import java.util.Calendar;
 
 public class DateDialog extends DialogFragment {
     private View view;
