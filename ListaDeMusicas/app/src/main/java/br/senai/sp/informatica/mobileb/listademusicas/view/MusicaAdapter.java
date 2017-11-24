@@ -1,7 +1,8 @@
 package br.senai.sp.informatica.mobileb.listademusicas.view;
 
+import android.app.AlertDialog;
 import android.content.Context;
-import android.content.Intent;
+import android.content.DialogInterface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.BaseAdapter;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 import com.daimajia.swipe.SwipeLayout;
 import java.util.HashMap;
 import java.util.List;
@@ -95,12 +97,23 @@ public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
     }
 
     @Override
-    public void onClick(View view) {
-        Long id = (Long) view.getTag();
+    public void onClick(final View view) {
+        final Long id = (Long) view.getTag();
         int idView = view.getId();
         if(idView == R.id.trash){
-            dao.remover(id);
-            notifyDataSetChanged();
+            AlertDialog.Builder alerta = new AlertDialog.Builder(view.getContext());
+            alerta.setMessage("Deseja excluir a música?");
+            alerta.setNegativeButton("Não", null);
+            alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dao.remover(id);
+                    Toast.makeText(view.getContext(), "Música excluída", Toast.LENGTH_SHORT).show();
+                    notifyDataSetChanged();
+                }
+            });
+            alerta.create();
+            alerta.show();
         }else {
             delegate.executa(id);
         }
