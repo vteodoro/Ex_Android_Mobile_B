@@ -1,16 +1,27 @@
 package br.senai.sp.informatica.mobileb.listademusicas.view;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.v4.app.ActivityCompat;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.Toast;
+
+import java.io.IOException;
 import java.util.Calendar;
 import br.senai.sp.informatica.mobileb.listademusicas.R;
+import br.senai.sp.informatica.mobileb.listademusicas.lib.Utilitarios;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
 import br.senai.sp.informatica.mobileb.listademusicas.model.MusicaDAO;
 
@@ -22,7 +33,10 @@ public class EditarActivity extends AppCompatActivity {
     private EditText edAlbum;
     private Musica musica;
     private MenuItem menuItem;
+    private ImageView ivFoto;
     private Calendar calendar = Calendar.getInstance();
+    private static final int REQUEST_IMAGE_GALERY = 0;
+    private static final int REQUEST_GALERY_PERMISSION = 1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +47,7 @@ public class EditarActivity extends AppCompatActivity {
         edArtista = (EditText) findViewById(R.id.edArtistaDet);
         edDataInc = (EditText) findViewById(R.id.edDataIncDet);
         edAlbum = (EditText) findViewById(R.id.edAlbumDet);
+        ivFoto = (ImageView) findViewById(R.id.ivAlbum);
 
         Intent intent = getIntent();
         if (intent != null) {
@@ -45,6 +60,8 @@ public class EditarActivity extends AppCompatActivity {
                     edArtista.setText(musica.getArtista());
                     edDataInc.setText(musica.getDtInclusao());
                     edAlbum.setText(musica.getAlbum());
+                    if(musica.getCapa() != null)
+                        ivFoto.setImageBitmap(Utilitarios.bitmapFromBase64(musica.getCapa()));
                 }
             }
         }
@@ -79,7 +96,15 @@ public class EditarActivity extends AppCompatActivity {
         musica.setAlbum(edAlbum.getText().toString());
         musica.setDtInclusao(edDataInc.getText().toString());
 
-        if (edTitulo.getText().toString().isEmpty() || edArtista.getText().toString().isEmpty() || edAlbum.getText().toString().isEmpty() || edDataInc.getText().toString().isEmpty()) {
+        Bitmap bitmap = Utilitarios.bitmapFromImageView(ivFoto);
+        if(bitmap != null) {
+            byte[] bytes = Utilitarios.bitmapToBase64(bitmap);
+            ivFoto.setImageBitmap(Utilitarios.bitmapFromBase64(bytes));
+            musica.setCapa(bytes);
+        }
+
+        if (edTitulo.getText().toString().isEmpty() || edArtista.getText().toString().isEmpty() ||
+                edAlbum.getText().toString().isEmpty() || edDataInc.getText().toString().isEmpty()){
             Toast.makeText(this, "Cadastro incompleto", Toast.LENGTH_SHORT).show();
         } else {
             dao.salvar(musica);
@@ -92,4 +117,81 @@ public class EditarActivity extends AppCompatActivity {
         DateDialog.makeDialog(calendar, edDataInc)
                 .show(getSupportFragmentManager(), "Data de inclusão");
     }
+
+    public void definirImg(View view){
+        abrirGaleria();
+    }
+
+    private void abrirGaleria(){
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+
+        if(intent.resolveActivity(getPackageManager()) != null) {
+            if ((ContextCompat.checkSelfPermission(getBaseContext(),
+                    Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+                ActivityCompat.requestPermissions(this, new String[]{
+                        Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_GALERY_PERMISSION);
+            }else {
+                startActivityForResult(Intent.createChooser(intent, "Selecione a foto"), REQUEST_IMAGE_GALERY);
+            }
+        }
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
+        boolean autorizado = true;
+
+        for(int resultado : grantResults){
+            if(resultado == PackageManager.PERMISSION_DENIED){
+                autorizado = false;
+                break;
+            }
+        }
+
+        switch (requestCode){
+            case REQUEST_GALERY_PERMISSION:
+                if(autorizado)
+                    abrirGaleria();
+                else
+                    Toast.makeText(this, "Acesso à galeria foi negado", Toast.LENGTH_SHORT).show();
+                break;
+            default:
+                super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        }
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data){
+        if(requestCode == REQUEST_IMAGE_GALERY){
+            if(data != null){
+                try{
+                    Uri imageURI = data.getData();
+                    Bitmap bitmap = Utilitarios.setPic(ivFoto.getWidth(), ivFoto.getHeight(), imageURI, this);
+                    ivFoto.setImageBitmap(bitmap);
+                    ivFoto.invalidate();
+                }catch(IOException ex){
+                    Toast.makeText(this, "Falha ao abrir foto", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
+    }
+
+
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -10,4 +10,5 @@
     <string name="dataincdet">Data de inclusão</string>
     <string name="add">Criar</string>
     <string name="save">Salvar</string>
+    <string name="albumtxt">Álbum</string>
 </resources>

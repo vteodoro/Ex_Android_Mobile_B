@@ -3,6 +3,8 @@ package br.senai.sp.informatica.mobileb.listademusicas.view;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +18,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import br.senai.sp.informatica.mobileb.listademusicas.R;
+import br.senai.sp.informatica.mobileb.listademusicas.lib.Utilitarios;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
 import br.senai.sp.informatica.mobileb.listademusicas.model.MusicaDAO;
+
+import static android.R.attr.bitmap;
 
 public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
     private MusicaDAO dao = MusicaDAO.manager;
@@ -77,12 +82,19 @@ public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
         TextView tvArtista = layout.findViewById(R.id.tvArtista);
         TextView tvAlbum = layout.findViewById(R.id.tvAlbum);
         TextView tvDataInc = layout.findViewById(R.id.tvDataInc);
+        ImageView ivFoto = layout.findViewById(R.id.imageView);
         Long id = mapa.get(linha);
         Musica musica = dao.getMusica(id);
         tvTitulo.setText(musica.getTitulo());
         tvArtista.setText(musica.getArtista());
         tvAlbum.setText(musica.getAlbum());
         tvDataInc.setText(musica.getDtInclusao());
+        if(musica.getCapa() != null) {
+            ivFoto.setImageBitmap(Utilitarios.bitmapFromBase64(musica.getCapa()));
+        }else{
+            Drawable drawable = ContextCompat.getDrawable(viewGroup.getContext(), R.mipmap.ic_launcher);
+                ivFoto.setImageDrawable(drawable);
+        }
 
         SwipeLayout swipeLayout = layout.findViewById(R.id.swipe_delete);
         swipeLayout.close();
