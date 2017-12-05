@@ -11,4 +11,10 @@
     <string name="add">Criar</string>
     <string name="save">Salvar</string>
     <string name="albumtxt">Álbum</string>
+    <string name="title_activity_nav">NavActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
 </resources>
