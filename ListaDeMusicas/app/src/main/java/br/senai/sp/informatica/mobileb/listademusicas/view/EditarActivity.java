@@ -114,7 +114,7 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     public void calendario(View view) {
-        DateDialog.makeDialog(calendar, edDataInc)
+        DateDialog.makeDialog(calendar, R.id.edDataIncDet)
                 .show(getSupportFragmentManager(), "Data de inclusão");
     }
 
