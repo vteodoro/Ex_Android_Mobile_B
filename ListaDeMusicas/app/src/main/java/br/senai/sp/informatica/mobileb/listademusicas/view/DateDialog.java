@@ -22,6 +22,12 @@ public class DateDialog extends DialogFragment implements DatePickerDialog.OnDat
     }
 
     public Dialog onCreateDialog(Bundle savedInstanceState) {
+        if(calendar == null){
+            long cal = savedInstanceState.getLong("cal");
+            calendar = Calendar.getInstance();
+            calendar.setTimeInMillis(cal);
+        }
+        
         int dia = calendar.get(Calendar.DAY_OF_MONTH);
         int mes = calendar.get(Calendar.MONTH);
         int ano = calendar.get(Calendar.YEAR);
@@ -33,5 +39,11 @@ public class DateDialog extends DialogFragment implements DatePickerDialog.OnDat
     public void onDateSet(DatePicker datePicker, int ano, int mes, int dia) {
         calendar.set(ano, mes, dia);
         editText.setText(fmt.format(calendar.getTime()));
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        outState.putLong("cal", calendar.getTimeInMillis());
+        super.onSaveInstanceState(outState);
     }
 }

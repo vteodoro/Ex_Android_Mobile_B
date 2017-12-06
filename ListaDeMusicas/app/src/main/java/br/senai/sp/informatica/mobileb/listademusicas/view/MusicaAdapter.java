@@ -92,7 +92,7 @@ public class MusicaAdapter extends BaseAdapter implements View.OnClickListener{
         if(musica.getCapa() != null) {
             ivFoto.setImageBitmap(Utilitarios.bitmapFromBase64(musica.getCapa()));
         }else{
-            Drawable drawable = ContextCompat.getDrawable(viewGroup.getContext(), R.mipmap.ic_launcher);
+            Drawable drawable = ContextCompat.getDrawable(viewGroup.getContext(), R.mipmap.ic_nota);
                 ivFoto.setImageDrawable(drawable);
         }
 

@@ -139,6 +139,26 @@ public class EditarActivity extends AppCompatActivity {
     }
 
     @Override
+    protected void onSaveInstanceState(Bundle outState){
+        Bitmap bitmap = Utilitarios.bitmapFromImageView(ivFoto);
+        if(bitmap != null){
+            outState.putByteArray("foto", Utilitarios.bitmapToBase64(bitmap));
+        }else{
+            outState.putByteArray("foto", null);
+        }
+        super.onSaveInstanceState(outState);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle saveInstanceState){
+        byte[] bytes = saveInstanceState.getByteArray("foto");
+        if(bytes != null){
+            ivFoto.setImageBitmap(Utilitarios.bitmapFromBase64(bytes));
+        }
+        super.onRestoreInstanceState(saveInstanceState);
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults){
         boolean autorizado = true;
 
