@@ -76,7 +76,15 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        return false;
+        int id = item.getItemId();
+
+        switch (id) {
+            case R.id.action_settings:
+                break;
+            default:
+                break;
+        }
+        return true;
     }
 
     @Override
