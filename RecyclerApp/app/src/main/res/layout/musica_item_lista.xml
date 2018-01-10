@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?android:selectableItemBackground"
+    android:clickable="true"
+    android:focusable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+    android:padding="16dp">
+
+    <TextView
+        android:id="@+id/tvTitulo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/titulo"
+        android:padding="8dp"
+        android:textAlignment="center"
+        android:textSize="25sp"/>
+    <TextView
+        android:id="@+id/tvArtista"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/artista"
+        android:padding="4dp"
+        android:textAlignment="center" />
+
+</LinearLayout>
