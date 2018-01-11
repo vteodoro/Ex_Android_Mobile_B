@@ -17,6 +17,8 @@ public class MusicaDao {
         lista.add(new Musica(id++, "Run", "Foo Fighters"));
         lista.add(new Musica(id++, "Revenge", "Papa Roach"));
         lista.add(new Musica(id++, "Exist", "A7x"));
+        lista.add(new Musica(id++, "Like a Stone", "Audioslave"));
+        lista.add(new Musica(id++, "Jeremy", "Pearl Jam"));
     }
 
     public List<Musica> getLista(){
