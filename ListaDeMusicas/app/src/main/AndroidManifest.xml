@@ -20,6 +20,13 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.EditarActivity" />
+        <activity android:name=".view.PreferenciasActivity"
+            android:parentActivityName=".view.MainActivity"
+            android:label="@string/preferencias">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity" />
+        </activity>
         <activity
             android:name=".view.NavActivity"
             android:theme="@style/AppTheme.NoActionBar"></activity>

@@ -3,6 +3,7 @@ package br.senai.sp.informatica.mobileb.listademusicas.view;
 import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
@@ -22,6 +23,7 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
     private Intent i;
     private final int EDITA_MUSICA = 0;
     private DrawerLayout drawer;
+    private static int PREF_ACTION = 2;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +39,7 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
         setSupportActionBar(toolbar);
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, "Open navigation drawer", "Close navigation drawer");
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
@@ -75,15 +77,29 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
     }
 
     @Override
+    public void onBackPressed(){
+        if(drawer.isDrawerOpen(GravityCompat.START)){
+            drawer.closeDrawer(GravityCompat.START);
+        }
+        super.onBackPressed();
+    }
+
+    @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.action_settings:
+            case R.id.nav_pref:
+                Intent tela = new Intent(getBaseContext(), PreferenciasActivity.class);
+                startActivityForResult(tela, PREF_ACTION);
                 break;
-            default:
+            case R.id.nav_perfil:
+                Intent intent = new Intent(this, UserActivity.class);
+                startActivity(intent);
                 break;
         }
+
+        drawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
