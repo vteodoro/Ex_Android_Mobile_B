@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import br.senai.sp.informatica.mobileb.listademusicas.R;
+import br.senai.sp.informatica.mobileb.listademusicas.view.adapter.MusicaAdapter;
 
 public class MainActivity extends AppCompatActivity implements  EditarMusicas, AdapterView.OnItemClickListener, View.OnClickListener, NavigationView.OnNavigationItemSelectedListener{
     private ListView listView;
@@ -89,7 +90,7 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
         int id = item.getItemId();
 
         switch (id) {
-            case R.id.nav_pref:
+            case R.id.nav_manage:
                 Intent tela = new Intent(getBaseContext(), PreferenciasActivity.class);
                 startActivityForResult(tela, PREF_ACTION);
                 break;

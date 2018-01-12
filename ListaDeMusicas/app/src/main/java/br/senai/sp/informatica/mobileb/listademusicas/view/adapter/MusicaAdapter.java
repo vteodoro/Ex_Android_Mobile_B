@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.mobileb.listademusicas.view;
+package br.senai.sp.informatica.mobileb.listademusicas.view.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
@@ -21,6 +21,7 @@ import br.senai.sp.informatica.mobileb.listademusicas.R;
 import br.senai.sp.informatica.mobileb.listademusicas.lib.Utilitarios;
 import br.senai.sp.informatica.mobileb.listademusicas.model.Musica;
 import br.senai.sp.informatica.mobileb.listademusicas.model.MusicaDAO;
+import br.senai.sp.informatica.mobileb.listademusicas.view.EditarMusicas;
 
 import static android.R.attr.bitmap;
 

@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.mobileb.listademusicas.view;
+package br.senai.sp.informatica.mobileb.listademusicas.view.fragment;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;
