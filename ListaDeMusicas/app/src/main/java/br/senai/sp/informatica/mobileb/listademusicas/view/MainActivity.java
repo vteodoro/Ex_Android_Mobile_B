@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity implements  EditarMusicas, A
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_nav);
 
         itemLista = new MusicaAdapter(this);
         listView = (ListView) findViewById(R.id.lvLista);
