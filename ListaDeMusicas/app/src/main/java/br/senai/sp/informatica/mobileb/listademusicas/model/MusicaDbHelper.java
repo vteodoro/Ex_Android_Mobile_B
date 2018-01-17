@@ -13,6 +13,7 @@ public class MusicaDbHelper extends SQLiteOpenHelper {
     public static final String ARTISTA = "artista";
     public static final String ALBUM = "album";
     public static final String DATA = "data";
+    //public static final String CAPA = "capa";
     private static final int VERSAO = 1;
 
     public MusicaDbHelper(Context context){
