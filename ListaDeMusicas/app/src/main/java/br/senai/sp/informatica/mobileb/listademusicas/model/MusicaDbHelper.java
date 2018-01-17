@@ -22,7 +22,7 @@ public class MusicaDbHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
         String criarBD = "create table " + TABELA + "(" + ID
-                + "integer primary key autoincrement," + TITULO
+                + " integer primary key autoincrement," + TITULO
                 + " text," + ARTISTA + " text," + ALBUM
                 + " text," + DATA + " long)";
         sqLiteDatabase.execSQL(criarBD);
