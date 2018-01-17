@@ -1,55 +1,81 @@
 package br.senai.sp.informatica.mobileb.listademusicas.model;
 
-import java.util.ArrayList;
-import java.util.Collections;
+import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import java.util.LinkedList;
 import java.util.List;
 
 public class MusicaDAO {
-    public static MusicaDAO manager = new MusicaDAO();
-    private List<Musica> lista;
-    private long id = 0;
 
-    private MusicaDAO(){
-        lista = new ArrayList<>();
-        lista.add(new Musica(id++, "The Stage", "A7x", "The Stage", "November 24, 2017"));
-        lista.add(new Musica(id++, "Exist", "A7x", "The Stage", "November 24, 2017"));
-        lista.add(new Musica(id++, "Roman Sky", "A7x", "The Stage", "November 24, 2017"));
-        lista.add(new Musica(id++, "Buried Alive", "A7x", "Nightmare", "November 24, 2017"));
-        lista.add(new Musica(id++, "Natural Born Killer", "A7x", "Nightmare", "November 24, 2017"));
-        lista.add(new Musica(id++, "Danger Line", "A7x", "Nightmare", "November 24, 2017"));
-        lista.add(new Musica(id++, "All My Life", "Foo Fighters", "One By One", "November 24, 2017"));
-        lista.add(new Musica(id++, "The Sky Is A Neighborhood", "Foo Fighters", "Concrete and Gold", "November 24, 2017"));
-        lista.add(new Musica(id++, "The Line", "Foo Fighters", "Concrete and Gold", "November 24, 2017"));
-        lista.add(new Musica(id++, "Something From Nothing", "Foo Fighters", "Sonic Highways", "November 24, 2017"));
-    }
+    private MusicaDbHelper dbo;
 
-    public List<Musica> getLista() {
-        Collections.sort(lista);
-        return Collections.synchronizedList(lista);
-    }
-
-    public Musica getMusica(final Long id) {
-        Musica objMus = null;
-        for(Musica obj : lista) {
-            if(obj.getId() == id) {
-                objMus = obj;
-                break;
-            }
-        }
-        return objMus;
+    public MusicaDAO (Context context){
+        dbo = new MusicaDbHelper(context);
     }
 
     public void salvar(Musica obj){
-        if(obj.getId() == null){
-            obj.setId(id++);
-            lista.add(obj);
-        } else{
-            int posicao = lista.indexOf(new Musica(obj.getId()));
-            lista.set(posicao, obj);
-        }
+
+       SQLiteDatabase db = dbo.getWritableDatabase();
+
+        String inserir = "insert into " + MusicaDbHelper.TABELA + "(titulo, artista, album, data) values(?, ?, ?, ?)";
+        db.execSQL(inserir, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao()});
+        db.close();
     }
 
-    public void remover(Long id) {
-        lista.remove(new Musica(id));
+    public List<Musica> getLista(){
+        List<Musica> musicas = new LinkedList<>();
+        String rawQuery = "select _id, titulo, artista, album, data from " +
+                MusicaDbHelper.TABELA;
+        SQLiteDatabase db = dbo.getReadableDatabase();
+        Cursor cursor  = db.rawQuery(rawQuery, null);
+        Musica musica = null;
+
+        if(cursor.moveToFirst()){
+            do{
+                musica.setId(cursor.getLong(0));
+                musica.setTitulo(cursor.getString(1));
+                musica.setArtista(cursor.getString(2));
+                musica.setAlbum(cursor.getString(3));
+                musica.setDtInclusao(cursor.getString(4));
+            }while (cursor.moveToNext());
+        }
+        return musicas;
+    }
+
+    public void atualizar(Musica obj){
+        SQLiteDatabase db = dbo.getWritableDatabase();
+        String update = "update " + MusicaDbHelper.TABELA + " set titulo = ?, artista = ?, album = ?, data = ? where _id = ?";
+        db.execSQL(update, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao(), obj.getId()});
+        Log.d("sql: ", update);
+        db.close();
+
+    }
+
+    //localizar
+    public Musica getMusica(final Long id) {
+        SQLiteDatabase db = dbo.getWritableDatabase();
+        String query = "select _id, titulo, artista, album, data from " + MusicaDbHelper.TABELA + "where _id = ?";
+
+        Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
+        cursor.moveToFirst();
+        Musica music = new Musica();
+        music.setId(cursor.getLong(0));
+        music.setTitulo(cursor.getString(1));
+        music.setArtista(cursor.getString(2));
+        music.setAlbum(cursor.getString(3));
+        music.setDtInclusao(cursor.getString(4));
+        db.close();
+        return music;
+    }
+
+    public void remover(Musica obj) {
+        SQLiteDatabase db = dbo.getWritableDatabase();
+
+        String deletar = "delete from " + MusicaDbHelper.TABELA + " where _id = ?";
+        db.execSQL(deletar, new Object[]{obj.getId()});
+        db.close();
     }
 }
