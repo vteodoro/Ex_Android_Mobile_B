@@ -20,18 +20,18 @@ public class MusicaDAO {
        SQLiteDatabase db = dbo.getWritableDatabase();
 
         if(obj.getId() == null) {
-            String inserir = "insert into " + MusicaDbHelper.TABELA + "(titulo, artista, album, data) values(?, ?, ?, ?)";
-            db.execSQL(inserir, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao()});
+            String inserir = "insert into " + MusicaDbHelper.TABELA + "(titulo, artista, album, data, capa) values(?, ?, ?, ?, ?)";
+            db.execSQL(inserir, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao(), obj.getCapa()!= null ? obj.getCapa():new byte[]{}});
         } else {
-            String update = "update " + MusicaDbHelper.TABELA + " set titulo = ?, artista = ?, album = ?, data = ? where _id = ?";
-            db.execSQL(update, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao(), obj.getId()});
+            String update = "update " + MusicaDbHelper.TABELA + " set titulo = ?, artista = ?, album = ?, data = ?, capa = ? where _id = ?";
+            db.execSQL(update, new Object[]{obj.getTitulo(), obj.getArtista(), obj.getAlbum(), obj.getDtInclusao(), obj.getCapa()!= null ? obj.getCapa():new byte[]{}, obj.getId()});
         }
         db.close();
     }
 
     public List<Musica> getLista(){
         List<Musica> musicas = new LinkedList<>();
-        String rawQuery = "select _id, titulo, artista, album, data from " +
+        String rawQuery = "select _id, titulo, artista, album, data, capa from " +
                 MusicaDbHelper.TABELA + " order by titulo";
         SQLiteDatabase db = dbo.getReadableDatabase();
         Cursor cursor  = db.rawQuery(rawQuery, null);
@@ -44,6 +44,7 @@ public class MusicaDAO {
                 musica.setArtista(cursor.getString(2));
                 musica.setAlbum(cursor.getString(3));
                 musica.setDtInclusao(cursor.getString(4));
+                musica.setCapa(cursor.getBlob(5));
                 musicas.add(musica);
             }while (cursor.moveToNext());
         }
@@ -53,7 +54,7 @@ public class MusicaDAO {
     //localizar
     public Musica getMusica(final Long id) {
         SQLiteDatabase db = dbo.getWritableDatabase();
-        String query = "select _id, titulo, artista, album, data from " + MusicaDbHelper.TABELA + " where _id = ?";
+        String query = "select _id, titulo, artista, album, data, capa from " + MusicaDbHelper.TABELA + " where _id = ?";
 
         Cursor cursor = db.rawQuery(query, new String[]{String.valueOf(id)});
         cursor.moveToFirst();
@@ -63,6 +64,7 @@ public class MusicaDAO {
         music.setArtista(cursor.getString(2));
         music.setAlbum(cursor.getString(3));
         music.setDtInclusao(cursor.getString(4));
+        music.setCapa(cursor.getBlob(5));
         db.close();
         return music;
     }

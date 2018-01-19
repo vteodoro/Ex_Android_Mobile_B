@@ -13,8 +13,11 @@ public class MusicaDbHelper extends SQLiteOpenHelper {
     public static final String ARTISTA = "artista";
     public static final String ALBUM = "album";
     public static final String DATA = "data";
-    //public static final String CAPA = "capa";
-    private static final int VERSAO = 1;
+    public static final String CAPA = "capa";
+
+   // public static final String DURACAO = "duracao";
+
+    private static final int VERSAO = 2;
 
     public MusicaDbHelper(Context context){
         super(context, NOME_BANCO, null, VERSAO);
@@ -25,13 +28,20 @@ public class MusicaDbHelper extends SQLiteOpenHelper {
         String criarBD = "create table " + TABELA + "(" + ID
                 + " integer primary key autoincrement," + TITULO
                 + " text," + ARTISTA + " text," + ALBUM
-                + " text," + DATA + " long)";
+                + " text," + CAPA + " blob," + DATA + " long)";
         sqLiteDatabase.execSQL(criarBD);
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-        sqLiteDatabase.execSQL("DROP TABLE IF EXIST " + TABELA);
-        onCreate(sqLiteDatabase);
+        int versao = sqLiteDatabase.getVersion();
+        switch (versao) {
+            case 1:
+                sqLiteDatabase.execSQL("ALTER TABLE  " + TABELA + " ADD COLUMN " + CAPA + " blob ");
+//            case 2:
+//                sqLiteDatabase.execSQL("ALTER TABLE  " + TABELA + " ADD COLUMN " + DURACAO + " int ");
+        }
     }
 }
+//PRAGMA table_info(table-name); -> retorna a estrutura da tabela
+//android.database.sqlite.SQLiteDatabase.getVersion()
