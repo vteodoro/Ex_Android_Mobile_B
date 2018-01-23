@@ -2,6 +2,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="br.senai.sp.informatica.mobileb.listademusicas">
 
+    <uses-permission android:name="android.permission.CAMERA"/>
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
 
@@ -12,7 +13,7 @@
         android:roundIcon="@mipmap/ic_nota"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:name=".Main">>
+        android:name=".Main">
         <activity android:name=".view.MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,7 +22,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.EditarActivity" />
+
+        <activity android:name=".view.EditarActivity"
+            android:parentActivityName=".view.MainActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity"/>
+        </activity>
+
         <activity android:name=".view.PreferenciasActivity"
             android:parentActivityName=".view.MainActivity"
             android:label="@string/preferencias">
@@ -29,6 +37,28 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".view.MainActivity" />
         </activity>
+
+        <activity android:name=".view.UserActivity"
+            android:parentActivityName=".view.MainActivity"
+            android:label="@string/dadosUsuario">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".view.MainActivity"
+                />
+        </activity>
+
+       <!-- <activity android:name=".lib.PhotoEditorActivity" />
+
+        <provider
+            android:authorities="br.senai.sp.informatica.albunsmusicais.provider"
+            android:name="android.support.v4.content.FileProvider"
+            android:grantUriPermissions="true"
+            android:exported="false">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/paths_provider" />
+        </provider>-->
+
 
     </application>
 
