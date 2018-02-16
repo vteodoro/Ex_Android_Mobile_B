@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">AppToken</string>
+    <string name="pesquisar">Pesquisar</string>
+    <string name="cep">CEP</string>
+</resources>
