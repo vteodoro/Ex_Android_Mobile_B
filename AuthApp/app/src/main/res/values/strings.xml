@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">AuthApp</string>
+    <string name="email">E-mail</string>
+    <string name="senha">Senha</string>
+    <string name="autorizacao">Autorização</string>
+    <string name="login">Login</string>
+    <string name="logout">Logout</string>
+    <string name="novo">Nova conta</string>
+</resources>
