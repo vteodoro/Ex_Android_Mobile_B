@@ -89,3 +89,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 }
+
+//https://console.firebase.google.com/project/authapp-e7594/authentication/users
+//https://developer.android.com/studio/login.html?success=true#
