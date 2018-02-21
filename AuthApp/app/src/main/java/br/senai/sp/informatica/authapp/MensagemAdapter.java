@@ -30,13 +30,14 @@ public class MensagemAdapter extends FirebaseListAdapter<MensagemDAO>{
         imgDel.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(final View view){
-                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.this);
+                AlertDialog.Builder alerta = new AlertDialog.Builder(MainActivity.class);
                 alerta.setMessage("Deseja apagar mensagem?");
                 alerta.setNegativeButton("Não", null);
                 alerta.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dao.remover((String)view.getTag(), new CallBackMessage("Falha ao apagar.");
+                        dao.remover((String)view.getTag(),
+                                new CallBackMessage("Falha ao apagar."));
                     }
                 });
                 alerta.create();

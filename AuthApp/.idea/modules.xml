@@ -3,9 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/AuthApp.iml" filepath="$PROJECT_DIR$/AuthApp.iml" />
-      <module fileurl="file://C:\Users\45948375811\Desktop\Workspace\ExAndroid\ExerciciosAndroid\AuthApp\AuthApp.iml" filepath="C:\Users\45948375811\Desktop\Workspace\ExAndroid\ExerciciosAndroid\AuthApp\AuthApp.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://C:\Users\45948375811\Desktop\Workspace\ExAndroid\ExerciciosAndroid\AuthApp\app\app.iml" filepath="C:\Users\45948375811\Desktop\Workspace\ExAndroid\ExerciciosAndroid\AuthApp\app\app.iml" />
     </modules>
   </component>
 </project>
