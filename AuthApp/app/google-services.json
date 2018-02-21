@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "577546388961-jqsn5p8iv0138l067a73hbig4roqfuno.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "br.senai.sp.informatica.authapp",
+            "certificate_hash": "66a62667861a22d1fb2687c9c787e983598db839"
+          }
+        },
+        {
           "client_id": "577546388961-v83djqv0vhghijou8vckoipc5io87ms6.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
