@@ -97,14 +97,14 @@ public class MainActivity extends AppCompatActivity {
 
         if(adapter == null){
             FirebaseListOptions<MensagemDAO> options = new FirebaseListOptions.Builder<MensagemDAO>()
-                    //.setQuery(dao.getReference(), MensagemDAO.class)
+                    .setQuery(dao.getReference(), MensagemDAO.class)
                     .setLayout(R.layout.layout_mensagem)
                     .setLifecycleOwner(this)
                     .build();
 
             adapter = new MensagemAdapter(options);
 
-            //listView.setAdapter(adapter);
+            listView.setAdapter(adapter);
         }
 
     }

@@ -18,9 +18,19 @@ public class MensagemDAO {
         map.put("id", obj.getId());
         map.put("mensagem", obj.getMensagem());
 
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("/mensagens/" + user.getUid() + "/" + obj.getId(), map);
+
+        base.updateChildren(updates, callback);
+
     }
 
-    public void remover(String string, CallBackMessage call){}
+    public void remover(String string, DatabaseReference.CompletionListener callback){
+        Map<String, Object> updates = new HashMap<>();
+        updates.put("/mensagens/" + user.getUid() + "/" + id, null);
+
+        base.updateChildren(updates, callback);
+    }
 
     public void verificarMensagens(){}
 
