@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.authapp;
+package br.senai.sp.informatica.authapp.model;
 
 import com.google.firebase.database.DatabaseReference;
 

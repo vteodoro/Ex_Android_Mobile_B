@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.authapp;
+package br.senai.sp.informatica.authapp.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,6 +14,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import br.senai.sp.informatica.authapp.R;
+import br.senai.sp.informatica.authapp.model.MensagemDAO;
 
 public class MainActivity extends AppCompatActivity {
     MensagemDAO dao;

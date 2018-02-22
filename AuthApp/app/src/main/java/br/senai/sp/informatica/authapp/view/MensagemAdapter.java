@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.authapp;
+package br.senai.sp.informatica.authapp.view;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+
+import br.senai.sp.informatica.authapp.R;
+import br.senai.sp.informatica.authapp.model.MensagemDAO;
 
 public class MensagemAdapter extends FirebaseListAdapter<MensagemDAO>{
     MensagemDAO dao;

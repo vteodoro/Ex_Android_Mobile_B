@@ -1,4 +1,4 @@
-package br.senai.sp.informatica.authapp;
+package br.senai.sp.informatica.authapp.view;
 
 import android.widget.Toast;
 
