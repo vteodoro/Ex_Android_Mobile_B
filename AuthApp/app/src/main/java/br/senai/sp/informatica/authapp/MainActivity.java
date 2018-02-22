@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
 import com.firebase.ui.database.FirebaseListOptions;
@@ -21,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     public EditText edEmail;
     public EditText edSenha;
     public EditText edAuth;
+    public ListView listView;
 
     private FirebaseAuth mAuth;
 
