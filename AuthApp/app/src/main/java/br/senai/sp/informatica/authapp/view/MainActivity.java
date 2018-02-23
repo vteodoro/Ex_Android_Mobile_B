@@ -2,13 +2,9 @@ package br.senai.sp.informatica.authapp.view;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.ListView;
 import android.widget.Toast;
-
-import com.firebase.ui.database.FirebaseListOptions;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -18,14 +14,13 @@ import com.google.firebase.auth.FirebaseUser;
 import br.senai.sp.informatica.authapp.R;
 import br.senai.sp.informatica.authapp.model.MensagemDAO;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
     MensagemDAO dao;
     MensagemAdapter adapter;
 
     public EditText edEmail;
     public EditText edSenha;
     public EditText edAuth;
-    public ListView listView;
 
     private FirebaseAuth mAuth;
 
@@ -51,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         String email = edEmail.getText().toString();
         String senha = edSenha.getText().toString();
 
-        //showProgressDialog();
+        showProgressDialog();
 
         mAuth.createUserWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -64,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Falha na autenticação", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-                        //hideProgressDialog();
+                        hideProgressDialog();
                     }
                 });
     }
@@ -73,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
         String email = edEmail.getText().toString();
         String senha = edSenha.getText().toString();
 
-        //showProgressDialog();
+        showProgressDialog();
 
         mAuth.signInWithEmailAndPassword(email, senha)
                 .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -86,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, "Falha na autenticação", Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
-                        //hideProgressDialog();
+                        hideProgressDialog();
                     }
                 });
     }
@@ -94,24 +89,6 @@ public class MainActivity extends AppCompatActivity {
     public void logoutClick(View view){
         mAuth.signOut();
         updateUI(null);
-    }
-
-    @Override
-    protected void onStart(){
-        super.onStart();
-
-        if(adapter == null){
-            FirebaseListOptions<MensagemDAO> options = new FirebaseListOptions.Builder<MensagemDAO>()
-                    .setQuery(dao.getReference(), MensagemDAO.class)
-                    .setLayout(R.layout.layout_mensagem)
-                    .setLifecycleOwner(this)
-                    .build();
-
-            adapter = new MensagemAdapter(options);
-
-            listView.setAdapter(adapter);
-        }
-
     }
 
 }
