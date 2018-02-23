@@ -6,4 +6,6 @@
     <string name="login">Login</string>
     <string name="logout">Logout</string>
     <string name="novo">Nova conta</string>
+    <string name="digite_aqui">Digite aqui</string>
+    <string name="enviar">Enviar</string>
 </resources>

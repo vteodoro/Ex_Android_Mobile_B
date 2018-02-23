@@ -10,13 +10,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-
 import br.senai.sp.informatica.authapp.R;
-import br.senai.sp.informatica.authapp.model.MensagemDAO;
 
 public class MainActivity extends BaseActivity {
-    MensagemDAO dao;
-    MensagemAdapter adapter;
 
     public EditText edEmail;
     public EditText edSenha;

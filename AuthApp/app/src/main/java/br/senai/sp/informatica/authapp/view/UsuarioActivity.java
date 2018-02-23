@@ -8,18 +8,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+
 import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
+
 import br.senai.sp.informatica.authapp.R;
 import br.senai.sp.informatica.authapp.lib.CallBackMessage;
 import br.senai.sp.informatica.authapp.model.Mensagem;
 import br.senai.sp.informatica.authapp.model.MensagemDAO;
 
-
-public class MensagemActivity extends BaseActivity {
+public class UsuarioActivity extends BaseActivity {
     private MensagemDAO dao;
     private ListView listView;
     private BaseAdapter adapter;
@@ -52,7 +52,7 @@ public class MensagemActivity extends BaseActivity {
                     .setLifecycleOwner(this)
                     .build();
 
-            adapter = new MensagemAdapter(options);
+            adapter = new MensagemActivity.MensagemAdapter(options);
             listView.setAdapter(adapter);
         }
 

@@ -4,17 +4,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
 import br.senai.sp.informatica.authapp.lib.DataCalback;
 
-public class MensagemDAO {
+public class UsuarioDAO {
     private DatabaseReference base;
     private FirebaseUser user;
     private String destinatarioId;
 
-    public MensagemDAO(String destinatarioId){
+    public UsuarioDAO(String destinatarioId){
         user = FirebaseAuth.getInstance().getCurrentUser();
         base = FirebaseDatabase.getInstance().getReference();
         this.destinatarioId = destinatarioId;
