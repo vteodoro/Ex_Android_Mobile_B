@@ -1,14 +1,8 @@
 package br.senai.sp.informatica.authapp.model;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-
 import br.senai.sp.informatica.authapp.lib.DataCalback;
 
 public class UsuarioDAO {
