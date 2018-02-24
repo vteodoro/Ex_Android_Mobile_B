@@ -12,44 +12,27 @@ import java.util.Map;
 import br.senai.sp.informatica.authapp.lib.DataCalback;
 
 public class UsuarioDAO {
+    public static UsuarioDAO dao = new UsuarioDAO();
     private DatabaseReference base;
-    private FirebaseUser user;
-    private String destinatarioId;
 
-    public UsuarioDAO(String destinatarioId){
-        user = FirebaseAuth.getInstance().getCurrentUser();
+    private UsuarioDAO(){
         base = FirebaseDatabase.getInstance().getReference();
-        this.destinatarioId = destinatarioId;
+    }
+
+    public String getUserId() {
+        return FirebaseAuth.getInstance().getCurrentUser().getUid();
     }
 
     public DatabaseReference getReference() {
-        return base.child("mensagens").child(user.getUid()).child(destinatarioId);
+        return base.child("usuarios");
     }
 
-    private String makeRefOrigem(String id) {
-        return "/mensagens/" + user.getUid() + "/" + destinatarioId + "/" + id;
-    }
-
-    private String makeRefDestino(String id) {
-        return "/mensagens/" + destinatarioId + "/" + user.getUid() + "/" + id;
-    }
-
-    public void salvar(Mensagem obj, DatabaseReference.CompletionListener callback){
-        if(obj.getId() == null){
-            obj.setId(getReference().push().getKey());
-        }
-
-        Map<String, Object> map = new HashMap<>();
-        map.put("id", obj.getId());
-        map.put("mensagem", obj.getMensagem());
-        map.put("origem", user.getUid());
-        map.put("data", new Date().getTime());
-
-        Map<String, Object> updates = new HashMap<>();
-        updates.put(makeRefOrigem(obj.getId()), map);
-        updates.put(makeRefDestino(obj.getId()), map);
-
-        base.updateChildren(updates, callback);
+    public void salvar(Usuario obj, DatabaseReference.CompletionListener callback){
+        DatabaseReference ref = getReference().child(getUserId());
+        ref.child("id").setValue(obj.getId());
+        ref.child("email").setValue(obj.getEmail());
+        ref.child("logado").setValue(obj.isLogado());
+        ref.child("token").setValue(obj.getToken());
     }
 
     public void verificarMensagens(){

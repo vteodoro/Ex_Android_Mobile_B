@@ -1,5 +1,6 @@
 package br.senai.sp.informatica.authapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.view.View;
@@ -10,7 +11,13 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.iid.FirebaseInstanceIdReceiver;
+
 import br.senai.sp.informatica.authapp.R;
+import br.senai.sp.informatica.authapp.lib.CallBackMessage;
+import br.senai.sp.informatica.authapp.model.Usuario;
+
+import static br.senai.sp.informatica.authapp.model.UsuarioDAO.dao;
 
 public class MainActivity extends BaseActivity {
 
@@ -33,9 +40,17 @@ public class MainActivity extends BaseActivity {
     }
 
     public void updateUI(FirebaseUser user){
+        hideProgressDialog();
+
         if(user != null){
-            edAuth.setText(user.getUid());
+            dao.salvar(new Usuario(user.getUid(), user.getEmail()),
+                    new CallBackMessage("Falha em cadastrar o usuario", this));
+
+            Intent i = new Intent(this, UsuarioActivity.class);
+            i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(i);
         }
+        finish();
     }
 
     public void novoLoginClick(View view){

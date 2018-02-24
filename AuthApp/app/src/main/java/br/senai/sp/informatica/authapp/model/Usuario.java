@@ -3,7 +3,17 @@ package br.senai.sp.informatica.authapp.model;
 public class Usuario {
     private String id;
     private String email;
-    private boolean logado;
+    private boolean logado = false;
+    private String token;
+
+    public Usuario() {
+    }
+
+    public Usuario(String uid, String email) {
+        this.id = uid;
+        this.email = email;
+        this.logado = true;
+    }
 
     public String getId() {
         return id;
@@ -27,5 +37,13 @@ public class Usuario {
 
     public void setLogado(boolean logado) {
         this.logado = logado;
+    }
+
+    public String getToken() {
+        return token;
+    }
+
+    public void setToken(String token) {
+        this.token = token;
     }
 }

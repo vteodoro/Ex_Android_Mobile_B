@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
-import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.firebase.ui.database.FirebaseListAdapter;
@@ -48,7 +47,7 @@ public class MensagemActivity extends BaseActivity {
         if(adapter == null){
             FirebaseListOptions<Mensagem> options = new FirebaseListOptions.Builder<Mensagem>()
                     .setQuery(dao.getReference(), Mensagem.class)
-                    .setLayout(R.layout.layout_mensagem)
+                    .setLayout(R.layout.aux_mensagem)
                     .setLifecycleOwner(this)
                     .build();
 

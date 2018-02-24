@@ -17,6 +17,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".view.MensagemActivity"/>
+        <activity android:name=".view.UsuarioActivity"/>
     </application>
 
 </manifest>

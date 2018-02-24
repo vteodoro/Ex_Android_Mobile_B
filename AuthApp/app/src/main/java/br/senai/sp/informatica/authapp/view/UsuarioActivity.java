@@ -1,11 +1,13 @@
 package br.senai.sp.informatica.authapp.view;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,30 +17,22 @@ import com.firebase.ui.database.FirebaseListAdapter;
 import com.firebase.ui.database.FirebaseListOptions;
 
 import br.senai.sp.informatica.authapp.R;
-import br.senai.sp.informatica.authapp.lib.CallBackMessage;
-import br.senai.sp.informatica.authapp.model.Mensagem;
-import br.senai.sp.informatica.authapp.model.MensagemDAO;
+import br.senai.sp.informatica.authapp.model.Usuario;
+import br.senai.sp.informatica.authapp.model.UsuarioChatArray;
+import br.senai.sp.informatica.authapp.model.UsuarioDAO;
 
-public class UsuarioActivity extends BaseActivity {
-    private MensagemDAO dao;
+public class UsuarioActivity extends BaseActivity implements AdapterView.OnItemClickListener {
+    private UsuarioDAO dao = UsuarioDAO.dao;
     private ListView listView;
-    private BaseAdapter adapter;
-    private String destinatarioId;
-    private EditText etDigitar;
+    private UsuarioAdapter adapter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.layout_mensagem);
-
-        Bundle extras = getIntent().getExtras();
-        if(extras != null) {
-            destinatarioId = extras.getString("id");
-            dao = new MensagemDAO(destinatarioId);
-        }
+        setContentView(R.layout.layout_usuario);
 
         listView = findViewById(R.id.listView);
-        etDigitar = findViewById(R.id.txtMsg);
+        listView.setOnItemClickListener(this);
     }
 
     @Override
@@ -46,56 +40,37 @@ public class UsuarioActivity extends BaseActivity {
         super.onStart();
 
         if(adapter == null){
-            FirebaseListOptions<Mensagem> options = new FirebaseListOptions.Builder<Mensagem>()
-                    .setQuery(dao.getReference(), Mensagem.class)
-                    .setLayout(R.layout.layout_mensagem)
+            FirebaseListOptions<Usuario> options = new FirebaseListOptions.Builder<Usuario>()
+                    .setSnapshotArray(new UsuarioChatArray())
+                    .setLayout(R.layout.aux_usuario)
                     .setLifecycleOwner(this)
                     .build();
 
-            adapter = new MensagemActivity.MensagemAdapter(options);
+            adapter = new UsuarioAdapter(options);
             listView.setAdapter(adapter);
         }
 
     }
 
-    public void enviarMsg(View view){
-        showProgressDialog();
-
-        Mensagem msg = new Mensagem();
-        msg.setMensagem(etDigitar.getText().toString());
-
-        dao.salvar(msg, new CallBackMessage("Falha no envio", this));
-
-        etDigitar.setText("");
-        etDigitar.requestFocus();
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        String destinatarioID = adapter.getItem(position).getId();
+        Intent i = new Intent(this, MensagemActivity.class);
+        i.putExtra("id", destinatarioID);
+        startActivity(i);
     }
 
-    public class MensagemAdapter extends FirebaseListAdapter<Mensagem> {
-        public MensagemAdapter(@NonNull FirebaseListOptions<Mensagem> options){
+    public class UsuarioAdapter extends FirebaseListAdapter<Usuario> {
+        public UsuarioAdapter(@NonNull FirebaseListOptions<Usuario> options){
             super(options);
             dao.verificarMensagens();
         }
 
         @Override
-        public View getView(int position, View view, ViewGroup viewGroup) {
-            Mensagem model = getItem(position);
-            if(destinatarioId.equals(model.getOrigem())){
-                view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.aux_mensagem2, viewGroup, false);
-            }else{
-                view = LayoutInflater.from(viewGroup.getContext())
-                        .inflate(R.layout.aux_mensagem, viewGroup, false);
-            }
-
-            return super.getView(position, view, viewGroup);
-
-        }
-
-        @Override
-        protected void populateView(View view, Mensagem model, int position){
+        protected void populateView(View view, Usuario model, int position){
             hideProgressDialog();
             TextView tvMsg = view.findViewById(R.id.tvMsg);
-            tvMsg.setText(model.getMensagem());
+            tvMsg.setText(model.getEmail());
 
         }
     }
